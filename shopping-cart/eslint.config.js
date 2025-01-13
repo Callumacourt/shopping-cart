@@ -1,22 +1,28 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import pluginReact from "eslint-plugin-react";
-import prettier from "eslint-config-prettier";
-import pluginPrettier from "eslint-plugin-prettier";
-
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  {
-    files: ["**/*.{js,mjs,cjs,jsx}"],
-    languageOptions: {
-      globals: globals.browser,
-    },
-    rules: {
-      // Enforce Prettier formatting
-      ...pluginPrettier.configs.recommended.rules,
-    },
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
   },
-  pluginJs.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  prettier,
-];
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'prettier'
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
+  plugins: ['react'],
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
+  rules: {
+    'react/react-in-jsx-scope': 'off'
+  }
+}
