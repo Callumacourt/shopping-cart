@@ -1,9 +1,14 @@
-const About = () => {
-    return (
-        <>
-        <h1>This is the about page</h1>
-        </>
-    )
-}
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer';
 
-export default About
+const About = () => {
+  return (
+    <>
+      <Header />
+      <Footer />
+      <h1>This is the about page</h1>
+    </>
+  );
+};
+
+export default About;

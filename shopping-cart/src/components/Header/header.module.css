@@ -1,0 +1,38 @@
+.header {
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  position: sticky;
+  z-index: 0;
+}
+
+.header_icons {
+  display: flex;
+  gap: 20px;
+}
+
+.header_icons button {
+  background: none;
+}
+
+.logo {
+  fill: white;
+}
+
+.navlinks {
+  display: flex;
+  gap: 50px;
+  list-style: none;
+}
+
+.searchBar {
+  height: 4vmin;
+  width: 60vmin;
+  border-radius: 0.5vmin;
+  border: 1px solid grey;
+  cursor: pointer;
+}

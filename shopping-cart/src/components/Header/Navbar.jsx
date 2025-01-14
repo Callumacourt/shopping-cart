@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import styles from './header.module.css';
 
 const Navbar = () => {
   return (
     <>
-      <div>
-        <ul>
+      <div className={styles.linksContainer}>
+        <ul className={styles.navlinks}>
           <li>
             <Link to="cart">Cart</Link>
           </li>
