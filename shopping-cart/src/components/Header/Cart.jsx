@@ -1,33 +1,24 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { arrayOf, object } from 'prop-types';
+import { useCart } from '../../context/CartContext';
+
+const cartItemShape = PropTypes.shape({
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  qty: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.is,
+});
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
-
-  const removeFromCart = (index) => {
-    setCartItems((prevItems) => prevItems.filter((_, i) => i !== index));
-  };
-
-  const handleQty = (itemName, direction) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.name === itemName
-          ? {
-              ...item,
-              qty: direction === '+' ? item.qty + 1 : Math.max(item.qty - 1, 0),
-            }
-          : item
-      )
-    );
-  };
+  const { cartItems, removeFromCart, handleQty } = useCart();
 
   return cartItems.map((item, index) => (
     <div key={index}>
       <img src={item.src} alt={item.alt} />
       <p>
-        {item.name}
-        {item.price}
-        {item.qty}
+        <span>{item.name}</span>
+        <span>{item.price}</span>
+        <span>{item.qty}</span>
       </p>
       <ul>
         <li>
@@ -48,20 +39,7 @@ const Cart = () => {
   ));
 };
 
-Cart.PropTypes = {
-  initialItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      qty: PropTypes.number.isRequired,
-      src: PropTypes.string.isRequired,
-      alt: PropTypes.string.isRequired,
-    })
-  ),
+Cart.propTypes = {
+  initialItems: PropTypes.arrayOf(cartItemShape),
 };
-
-Cart.defaultProps = {
-  initialItems: [],
-};
-
 export default Cart;
