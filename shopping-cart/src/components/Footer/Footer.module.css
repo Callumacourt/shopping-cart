@@ -1,0 +1,9 @@
+.footerContainer {
+  background-color: black;
+  color: white;
+  padding: 0;
+}
+
+.footerContainer p {
+  margin: 0;
+}

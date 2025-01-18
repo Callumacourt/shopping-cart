@@ -1,4 +1,5 @@
 import styles from './Products.module.css';
+import AddToCart from './AddToCart';
 
 const Card = ({ product }) => {
   return (
@@ -16,6 +17,9 @@ const Card = ({ product }) => {
         </span>
         <span>
           <p>{product.price}</p>
+        </span>
+        <span>
+          <AddToCart product={product} />
         </span>
       </div>
     </div>

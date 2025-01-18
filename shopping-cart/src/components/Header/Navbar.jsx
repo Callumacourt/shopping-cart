@@ -7,13 +7,13 @@ const Navbar = () => {
       <div className={styles.linksContainer}>
         <ul className={styles.navlinks}>
           <li>
-            <Link to="cart">Cart</Link>
+            <Link to="/cart">Cart</Link>
           </li>
           <li>
-            <Link to="store">Store</Link>
+            <Link to="/store">Store</Link>
           </li>
           <li>
-            <Link to="about">About us</Link>
+            <Link to="/about">About us</Link>
           </li>
         </ul>
       </div>

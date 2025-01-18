@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Card from './Card';
+import AddToCart from './AddToCart';
 import styles from './Products.module.css';
 
 const Products = () => {
