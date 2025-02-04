@@ -5,69 +5,83 @@ import Cart from '../components/Cart/Cart';
 import { CartProvider } from '../context/CartContext';
 import piano from '../assets/piano1.jpg';
 
-const mockCart = [
-  {
-    name: 'big old grand piano',
-    price: 1000,
-    qty: 1,
-    src: piano,
-    alt: 'a big old piano',
-  },
-  {
-    name: 'small new piano',
-    price: 500,
-    qty: 4,
-    src: piano,
-    alt: 'a small new piano',
-  },
-];
+describe('Shopping Cart', () => {
+  const setupCart = (
+    initialItems = [
+      {
+        title: 'big old grand piano',
+        price: 1000,
+        qty: 1,
+        src: piano,
+        alt: 'a big old piano',
+      },
+      {
+        title: 'small new piano',
+        price: 500,
+        qty: 4,
+        src: piano,
+        alt: 'a small new piano',
+      },
+    ]
+  ) => {
+    render(
+      <CartProvider initialItems={initialItems}>
+        <Cart />
+      </CartProvider>
+    );
+    return userEvent.setup();
+  };
 
-const renderWithProvider = (component, initialItems = mockCart) => {
-  return render(
-    <CartProvider initialItems={initialItems}>{component}</CartProvider>
-  );
-};
+  const findText = (inputText) => screen.getByText(inputText, { exact: false });
 
-describe('Cart component', () => {
-  beforeEach(() => {
-    const { setCartItems } = vi.fn();
+  describe('when viewing the cart', () => {
+    it('shows all items with their details', () => {
+      setupCart();
+
+      // Check if user can see their items
+      expect(screen.getByText(/big old grand piano/)).toBeInTheDocument();
+      expect(screen.getByText(/small new piano/)).toBeInTheDocument();
+
+      // Check if images are accessible
+      expect(screen.getByAltText(/a small new piano/)).toBeInTheDocument();
+      expect(screen.getByAltText(/a big old piano/)).toBeInTheDocument();
+    });
+
+    it('displays the total cost of all items', () => {
+      setupCart();
+      expect(findText('3000.00')).toBeInTheDocument();
+    });
   });
 
-  it('renders cart items correctly', () => {
-    renderWithProvider(<Cart />);
-    expect(screen.getByText(/big old grand piano/)).toBeInTheDocument();
-    expect(screen.getByText(/small new piano/)).toBeInTheDocument();
-    expect(screen.getByAltText(/a small new piano/)).toBeInTheDocument();
-    expect(screen.getByAltText(/a big old piano/)).toBeInTheDocument();
-  });
+  describe('when managing cart items', () => {
+    it('lets users add more of an item', async () => {
+      const user = setupCart();
 
-  it('allows increasing item qty', async () => {
-    renderWithProvider(<Cart />);
-    const user = userEvent.setup();
+      // When user clicks + button on first item
+      await user.click(screen.getAllByText('+')[0]);
 
-    const plusButtons = screen.getAllByText('+');
-    await user.click(plusButtons[0]);
+      // Then quantity should increase
+      expect(screen.getByText('Qty: 2')).toBeInTheDocument();
+    });
 
-    expect(screen.getByText('2')).toBeInTheDocument();
-  });
+    it('lets users reduce item quantity', async () => {
+      const user = setupCart();
 
-  it('allows decreasing item qty', async () => {
-    renderWithProvider(<Cart />);
-    const user = userEvent.setup();
+      // When user clicks - button on second item
+      await user.click(screen.getAllByText('-')[1]);
 
-    const minusButtons = screen.getAllByText('-');
-    await user.click(minusButtons[1]);
+      // Then quantity should decrease
+      expect(screen.getByText('Qty: 3')).toBeInTheDocument();
+    });
 
-    expect(screen.getByText('3')).toBeInTheDocument();
-  });
+    it('lets users remove items entirely', async () => {
+      const user = setupCart();
 
-  it('allows removing items from the cart', async () => {
-    renderWithProvider(<Cart />);
-    const user = userEvent.setup();
+      // When user removes the first item
+      await user.click(screen.getAllByText('Remove')[0]);
 
-    const removeButtons = screen.getAllByText('X');
-    await user.click(removeButtons[0]);
-
-    expect(screen.queryByText(/big old grand piano/)).not.toBeInTheDocument();
+      // Then that item should no longer be visible
+      expect(screen.queryByText(/big old grand piano/)).not.toBeInTheDocument();
+    });
   });
 });
