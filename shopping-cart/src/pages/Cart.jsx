@@ -1,14 +1,15 @@
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
+import Cart from '../components/Cart/Cart';
 
-const Cart = () => {
+const CartPage = () => {
   return (
     <>
       <Header />
+      <Cart />
       <Footer />
-      <h1>This is the cart</h1>
     </>
   );
 };
 
-export default Cart;
+export default CartPage;

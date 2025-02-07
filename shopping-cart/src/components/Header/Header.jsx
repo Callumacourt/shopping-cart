@@ -22,10 +22,12 @@ const Header = () => {
           <button>
             <img src={searchIcn} alt="Search" />
           </button>
-          <button>
-            <img src={cartIcn} alt="Shopping Cart" />
-            <span>{cartItems.length}</span>
-          </button>
+          <Link to="/cart">
+            <button>
+              <img src={cartIcn} alt="Shopping Cart" />
+              <span>{cartItems.length}</span>
+            </button>
+          </Link>
         </div>
       </header>
     </>

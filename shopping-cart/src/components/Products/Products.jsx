@@ -1,28 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useProducts } from '../../context/ProductContext';
 import Card from './Card';
-import AddToCart from './AddToCart';
 import styles from './Products.module.css';
 
-const Products = () => {
-  const [productData, setProductData] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+export default function Products() {
+  const { productData, error, loading } = useProducts();
 
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products', { mode: 'cors' })
-      .then((response) => {
-        if (response.status >= 400) {
-          throw new Error('server error');
-        }
-        return response.json();
-      })
-      .then((response) => setProductData(response))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>A network error occured</p>;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error {error.message}</div>;
 
   return (
     <div className={styles.productContainer}>
@@ -33,6 +17,4 @@ const Products = () => {
         ))}
     </div>
   );
-};
-
-export default Products;
+}

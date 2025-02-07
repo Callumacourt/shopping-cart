@@ -8,7 +8,7 @@
   padding-right: 2rem;
   top: 0px;
   position: sticky;
-  z-index: 0;
+  z-index: 2;
 }
 
 .header_icons {

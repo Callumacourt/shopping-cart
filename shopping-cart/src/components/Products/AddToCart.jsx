@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
 
 const AddToCart = ({ product }) => {
-  const { addToCart } = useCart();
+  const { addFunction } = useCart();
   const [qtyToAdd, setQtyToAdd] = useState(1);
 
   return (
@@ -16,7 +16,7 @@ const AddToCart = ({ product }) => {
       </div>
       <button
         onClick={() => {
-          addToCart({ product }, qtyToAdd);
+          addFunction({ product, quantity: qtyToAdd });
           setQtyToAdd(1);
         }}
       >

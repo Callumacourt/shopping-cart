@@ -1,4 +1,5 @@
 import pianoImage1 from '../../assets/piano1.jpg';
+import { Link } from 'react-router-dom';
 import styles from './Hero.module.css';
 
 const HomeHero = () => {
@@ -12,8 +13,12 @@ const HomeHero = () => {
             musicians of every level. From timeless classics to cutting-edge
             designs, your perfect piano is just a click away
           </p>
-          <button>Shop now</button>
-          <button>Learn more</button>
+          <Link to={'/cart'}>
+            <button>Shop now</button>
+          </Link>
+          <Link to={'/about'}>
+            <button>Learn more</button>
+          </Link>
         </div>
         <div className={styles.imageContainer}>
           <img

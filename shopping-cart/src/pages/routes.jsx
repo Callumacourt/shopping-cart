@@ -1,7 +1,9 @@
 import App from '../components/App';
-import Cart from './cart';
+import CartPage from './cart';
 import Store from './Store';
 import About from './About';
+import ProductPage from './ProductPage';
+import { element } from 'prop-types';
 
 const routes = [
   {
@@ -10,15 +12,20 @@ const routes = [
   },
   {
     path: 'cart',
-    element: <Cart />,
+    element: <CartPage />,
   },
   {
     path: 'store',
     element: <Store />,
+    children: [],
   },
   {
     path: 'about',
     element: <About />,
+  },
+  {
+    path: 'product/:productId',
+    element: <ProductPage />,
   },
 ];
 

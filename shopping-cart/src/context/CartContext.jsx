@@ -22,7 +22,7 @@ export function CartProvider({ children, initialItems = [] }) {
     );
   };
 
-  const addToCart = ({ product, quantity = 1 }) => {
+  const addFunction = ({ product, quantity = 1 }) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find(
         (item) => item.title === product.title
@@ -44,7 +44,13 @@ export function CartProvider({ children, initialItems = [] }) {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, setCartItems, removeFromCart, addToCart, handleQty }}
+      value={{
+        cartItems,
+        setCartItems,
+        removeFromCart,
+        addFunction,
+        handleQty,
+      }}
     >
       {children}
     </CartContext.Provider>
