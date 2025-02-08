@@ -1,5 +1,8 @@
 import { useProducts } from '../context/ProductContext';
 import { useParams } from 'react-router-dom';
+import AddToCart from '../components/Products/AddToCart';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 
 export default function ProductPage() {
   const { productData, error, loading } = useProducts();
@@ -13,10 +16,20 @@ export default function ProductPage() {
   );
 
   return (
-    <div className="container">
-      <h1>{selectedProduct.title}</h1>
-      <img src={selectedProduct.image} alt={selectedProduct.title} />
-      <p>{selectedProduct.price}</p>
-    </div>
+    <>
+      <Header />
+      <div className="container">
+        <div className="imageContainer">
+          <img src={selectedProduct.image} alt={selectedProduct.title} />
+        </div>
+        <div className="content">
+          <h2>{selectedProduct.title}</h2>
+          <p>{selectedProduct.price}</p>
+          <p>{selectedProduct.description}</p>
+          <AddToCart product={selectedProduct} />
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 }
