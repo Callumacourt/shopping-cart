@@ -19,9 +19,6 @@ const Header = () => {
         <SearchBar />
         <Navbar />
         <div className={styles.header_icons}>
-          <button>
-            <img src={searchIcn} alt="Search" />
-          </button>
           <Link to="/cart">
             <button>
               <img src={cartIcn} alt="Shopping Cart" />
