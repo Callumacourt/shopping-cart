@@ -12,22 +12,23 @@ const HomeHero = () => {
             <div className={styles.textWrapper}>
               <h3>Logoipsum</h3>
               <p>
-                We create fashion that moves with you—timeless, functional, and
+                We create fashion that moves with you. Timeless, functional, and
                 effortlessly refined. Thoughtfully designed, responsibly made,
                 and always ahead of the curve.
               </p>
             </div>
             <div className={styles.buttons}>
-              <Link to={'/cart'}>
+              <Link to="/cart">
                 <button>Shop now</button>
               </Link>
-              <Link to={'/about'}>
+              <Link to="/about">
                 <button>Learn more</button>
               </Link>
             </div>
           </div>
         </div>
       </section>
+      <section className={styles.content}></section>
     </>
   );
 };

@@ -1,7 +1,11 @@
+@font-face {
+  font-family: 'playfair';
+  src: url('../../assets/Fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf');
+}
+
 .imageContainer {
   position: relative;
-
-  height: 100vh;
+  height: 100%;
   width: 100%;
   overflow: hidden;
 }
@@ -12,12 +16,11 @@ section {
 
 .container {
   position: absolute;
-  width: 100%;
-  top: 55%;
-  height: 100%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  gap: 10px;
+  width: 40%;
+  top: 50%;
+  left: 20%;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
 .container button {
@@ -44,10 +47,56 @@ section {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold;
-  font-size: 1.2rem;
-  max-width: 35%;
+  font-size: clamp(1rem, 2vw, 2rem);
+  max-width: 100%;
 }
 
 .textWrapper h3 {
   font-size: 3rem;
+  font-family: 'playfair';
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 50%;
+    left: 8%;
+  }
+}
+
+/* Small tablet */
+@media (max-width: 768px) {
+  .container {
+    width: 70%;
+    left: 5%;
+  }
+
+  .textWrapper {
+    max-width: 100%;
+  }
+}
+
+/* Mobile*/
+@media (max-width: 576px) {
+  .container {
+    width: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .textWrapper {
+    max-width: 100%;
+  }
+
+  .textWrapper h3 {
+    font-size: 2rem;
+  }
+
+  .textWrapper p {
+    font-size: 0.9rem;
+  }
 }

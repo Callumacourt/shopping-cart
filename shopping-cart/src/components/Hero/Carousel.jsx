@@ -23,6 +23,10 @@ export default function Carousel() {
     );
   };
 
+  const pickSlide = (index) => {
+    setImgIndex(() => index);
+  };
+
   return (
     <div className={styles.carousel}>
       <button
@@ -32,13 +36,11 @@ export default function Carousel() {
       >
         &lt;
       </button>
-      <div className={styles.imgContainer}>
-        <img
-          src={images[imgIndex]}
-          alt={`Slide ${imgIndex + 1}`}
-          className={styles.carouselImage}
-        />
-      </div>
+      <img
+        src={images[imgIndex]}
+        alt={`Slide ${imgIndex + 1}`}
+        className={styles.carouselImage}
+      />
       <button
         className={styles.nextButton}
         onClick={nextSlide}

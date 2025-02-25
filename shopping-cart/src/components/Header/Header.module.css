@@ -1,0 +1,66 @@
+.header {
+  background-color: #254453;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  top: 0px;
+  position: sticky;
+  box-sizing: border-box;
+  z-index: 100;
+  width: 100%;
+}
+
+.header_icons {
+  display: flex;
+  gap: 20px;
+}
+
+.header_icons button {
+  background: none;
+}
+
+.logo {
+  fill: white;
+}
+
+.navlinks {
+  display: flex;
+  gap: 50px;
+  list-style: none;
+}
+
+.searchBarContainer {
+  position: relative;
+  width: 60vmin;
+}
+
+.searchBar {
+  height: 4vmin;
+  border-radius: 50px;
+  width: 100%;
+  cursor: text;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  top: 100%;
+}
+
+.dropdown h1 {
+  font-size: 1em;
+}
