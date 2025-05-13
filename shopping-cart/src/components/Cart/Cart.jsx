@@ -1,5 +1,6 @@
 import PropTypes, { arrayOf, object } from 'prop-types';
 import { useCart } from '../../context/CartContext';
+import { Link } from 'react-router-dom';
 
 const cartItemShape = PropTypes.shape({
   name: PropTypes.string.isRequired,
@@ -48,7 +49,9 @@ const Cart = () => {
             .reduce((total, item) => total + item.price * item.qty, 0)
             .toFixed(2)}
         </span>
+        <Link to="/checkout">
         <button>Checkout</button>
+        </Link>
       </div>
     </>
   );

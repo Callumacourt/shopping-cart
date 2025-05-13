@@ -1,9 +1,10 @@
 import App from '../components/App';
-import CartPage from './cart';
+import CartPage from './CartPage';
 import Store from './Store';
 import About from './About';
 import ProductPage from './ProductPage';
 import { element } from 'prop-types';
+import Checkout from '../components/Checkout/Checkout';
 
 const routes = [
   {
@@ -12,7 +13,7 @@ const routes = [
   },
   {
     path: 'cart',
-    element: <CartPage />,
+    element: <CartPage/>,
   },
   {
     path: 'store',
@@ -22,6 +23,10 @@ const routes = [
   {
     path: 'about',
     element: <About />,
+  },
+  {
+    path: 'checkout',
+    element: <Checkout/>
   },
   {
     path: 'product/:productId',
