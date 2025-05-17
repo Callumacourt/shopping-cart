@@ -1,0 +1,25 @@
+.pickUpContainer div {
+    background-color: white;
+    margin-bottom: 5px;
+    color: black;
+    width: 20vw;
+}
+
+.addressDropdown {
+    background-color: white;
+    color: black;
+    height: fit-content;
+    max-height: 20vh;
+    width: 40vw;
+    overflow-y: scroll;
+    list-style: none;
+}
+
+.addressDropdown li:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.detailsDropdown {
+    display: none;
+}
