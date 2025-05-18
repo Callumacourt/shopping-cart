@@ -3,30 +3,33 @@ import DeliveryForm from './DeliveryForm';
 import PaymentForm from "./PaymentForm";
 import { DeliveryProvider } from "../../context/DeliveryContext";
 import { CartContext } from '../../context/CartContext';
-import { useContext } from 'react';
+import Header from '../Header/Header'
+import { useContext, useState } from 'react';
 
 
 
 const Checkout = () => {
 
     const cartItems = useContext(CartContext)
+    const [checkoutProgress, setCheckoutProgress] = useState('email')
    
     return (
         <DeliveryProvider>
+            <Header></Header>
             <div className={styles.orderSection}>
                 <p>Order total
                     {cartItems.price}
                 </p>
             </div>
             <div className="formSection">
-                <DeliveryForm/>
+                <DeliveryForm checkoutProgress={checkoutProgress} setCheckoutProgress={setCheckoutProgress}/>
             </div>
             <div className={styles.paymentSection}>
-                <div className={`${styles.card} ${styles.email}`}>
+                <div className={`$${styles.email}`}>
                 
                 </div>
                 <div className={`${styles.card} ${styles.payment}`}>
-                    <PaymentForm/>
+                    <PaymentForm checkoutProgress={checkoutProgress} setCheckoutProgress={setCheckoutProgress}/>
                 </div>
             </div>
         </DeliveryProvider>

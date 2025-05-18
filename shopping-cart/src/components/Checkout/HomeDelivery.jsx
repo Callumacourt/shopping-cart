@@ -20,6 +20,7 @@ const HomeDelivery = ({}) => {
     const debounceTimer = useRef()
 
     const handleInput = (e) => {
+      console.log(deliveryLocation)
         const value = e.target.value;
         setTypingAddress(value)
         clearTimeout(debounceTimer.current)
@@ -47,15 +48,25 @@ const HomeDelivery = ({}) => {
           <input
             type="text"
             placeholder="Address Line 2"
-            value={deliveryLocation.address}
+            value={[deliveryLocation.address?.house_number || "  ", deliveryLocation.address?.road || ""]}
             onChange={(e) =>
               setDeliveryLocation({ ...deliveryLocation, address: e.target.value })
             }
           />
-          <input type="text" placeholder="City / Town" />
-          <input type="text" placeholder="Post code" />
+          <input 
+          type="text" 
+          placeholder="City / Town"
+          value={deliveryLocation.address?.city ||deliveryLocation.address?.town || ""}
+          onChange={(e) => ({...deliveryLocation, city: e.target.value})}  />
+          <input 
+          type="text" 
+          placeholder="Post code"
+          value={deliveryLocation.address?.postcode || ""}
+          onChange={(e) => ({...deliveryLocation, postcode: e.target.value})}  />
           <input type="number" placeholder="phone number" />
         </div>
+
+        <section className={styles.suggestionsSection}>
         <div className={styles.addressDropdown}>
           {addresses.length > 0 ? (
             addresses.map((suggestion, index) => (
@@ -70,6 +81,7 @@ const HomeDelivery = ({}) => {
             <li>No suggestions found</li>
           )}
         </div>
+        </section>
       </>
     )}
   </>

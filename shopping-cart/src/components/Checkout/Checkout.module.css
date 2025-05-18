@@ -15,11 +15,45 @@
     list-style: none;
 }
 
-.addressDropdown li:hover {
+.addressDropdown li:hover, .pickUpContainer div:hover {
     background-color: lightgray;
     cursor: pointer;
 }
 
-.detailsDropdown {
-    display: none;
+.card {
+    background-color: white;
+    color: black;
+    max-width: 75%;
+    border-radius: 20px;
+    padding: 25px 40px ;
+    margin-left: 5vw;
+    margin-bottom: 3vmin;
+}
+
+.userEmail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkoutForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkoutForm input {
+    background-color: white;
+    margin-bottom: 1vmin;
+    padding: 10px;
+    color: black;
+    border: none;
+    border-bottom: 3px solid black;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.nameIn {
+    display: flex;
 }

@@ -5,7 +5,6 @@ import { DeliveryContext } from "../../context/DeliveryContext";
 import Loader from '../Loader.jsx'
 
 const PickupPoint = () => {
-
     const  {
         loading,
         setIsLoading,
