@@ -5,6 +5,12 @@
     width: 20vw;
 }
 
+.error {
+    height: 2rem;
+    color: red;
+    font-style: italic;
+}
+
 .addressDropdown {
     background-color: white;
     color: black;
@@ -56,4 +62,29 @@ body {
 
 .nameIn {
     display: flex;
+}
+
+.pickupTitle {
+    display: flex;
+    align-items: center;
+}
+
+.pickBase {
+    background-color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid black;
+    position: relative;
+    transition: border 0.05s;
+}
+.activePick {
+    border: 6px solid #222;
+}
+
+.activePick::after {
+    background: #222;
 }

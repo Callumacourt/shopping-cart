@@ -8,11 +8,13 @@ const PickupPoint = () => {
     const  {
         loading,
         setIsLoading,
-        setDeliveryLocation
+        setDeliveryLocation,
+        pickupLocations,
+        setPickupLocations,
     } = useContext(DeliveryContext)
     
     const [postcode, setPostcode] = useState('')
-    const [pickupLocations, setPickupLocations] = useState([])
+    const [activePick, setActivePick] = useState('')
     
     const handleInput = async () => {
         try {
@@ -26,7 +28,6 @@ const PickupPoint = () => {
     }
     return (
         <>
-        <input type="number" placeholder="phoneNumber" />
         <input 
         type="text" 
         placeholder="post code" 
@@ -42,15 +43,28 @@ const PickupPoint = () => {
             {loading ? (<Loader />) 
             : (
                 pickupLocations.slice(0, 5).map((pickup) => (
-                    <div onClick={() => {
-                        setDeliveryLocation(pickupLocations.find((location) => location.id === pickup.id))}}
-                    key={pickup.id}>
-                        <p>{pickup.name}</p>
-                        <p>
-                            {pickup.street}, {pickup.city}
-                        </p>
-                        <p>{pickup.postcode}</p>
-                    </div>
+                    <div
+                    key={pickup.id}
+                    className={styles.pickUpOption}
+                    onClick={() => {
+                        setDeliveryLocation(pickupLocations.find((location) => location.id === pickup.id))
+                        setActivePick(pickup.id)
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-pressed={activePick === pickup.id}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <span
+                        className={`${styles.pickBase} ${activePick === pickup.id ? styles.activePick : ''}`}
+                        aria-hidden="true"
+                    />
+                    <h3>{pickup.name}</h3>
+                    <p>
+                        {pickup.street}, {pickup.city}
+                    </p>
+                    <p>{pickup.postcode}</p>
+                </div>
                 ))
             )}
             </div>

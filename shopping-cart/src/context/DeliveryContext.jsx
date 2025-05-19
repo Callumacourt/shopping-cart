@@ -6,6 +6,8 @@ export const DeliveryProvider = ({children}) => {
     const [homeDelivery, setHomeDelivery] = useState(true);
     const [typingAddress, setTypingAddress] = useState('');
     const [deliveryLocation, setDeliveryLocation] = useState({});
+    const [billingAddress, setBillingAddress] = useState({})
+    const [pickupLocations, setPickupLocations] = useState([])
     const [loading, setIsLoading] = useState(false);
 
      return (
@@ -17,8 +19,12 @@ export const DeliveryProvider = ({children}) => {
                 setTypingAddress,
                 deliveryLocation,
                 setDeliveryLocation,
+                billingAddress,
+                setBillingAddress,
                 loading,
                 setIsLoading,
+                pickupLocations, 
+                setPickupLocations,
             }}
         >
             {children}
