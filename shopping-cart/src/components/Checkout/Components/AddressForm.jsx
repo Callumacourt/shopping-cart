@@ -1,9 +1,9 @@
-import fetchAddress from "./fetchAddress.js";
+import fetchAddress from "../Js/fetchAddress.js";
 import { useContext } from "react";
-import styles from './Checkout.module.css'
-import Loader from '../Loader.jsx'
+import styles from '../CSS/Checkout.module.css'
+import Loader from '../../Loader.jsx'
 import { useState, useRef } from "react";
-import { DeliveryContext } from "../../context/DeliveryContext.jsx";
+import { DeliveryContext } from "../../../context/DeliveryContext.jsx";
 
 const AddressForm = ({countryCode, deliveryLocation, setDeliveryLocation}) => {
   const 

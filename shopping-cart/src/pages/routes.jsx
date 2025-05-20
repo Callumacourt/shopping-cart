@@ -4,7 +4,7 @@ import Store from './Store';
 import About from './About';
 import ProductPage from './ProductPage';
 import { element } from 'prop-types';
-import Checkout from '../components/Checkout/Checkout';
+import Checkout from '../components/Checkout/Components/Checkout'
 
 const routes = [
   {

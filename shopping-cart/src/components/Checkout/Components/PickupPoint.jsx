@@ -1,8 +1,8 @@
-import fetchNearbyLockers from "./fetchPickups";
-import styles from './Checkout.module.css'
+import fetchNearbyLockers from "../Js/fetchPickups.js";
+import styles from '../CSS/Checkout.module.css'
 import { useContext, useState } from "react";
-import { DeliveryContext } from "../../context/DeliveryContext";
-import Loader from '../Loader.jsx'
+import { DeliveryContext } from "../../../context/DeliveryContext.jsx";
+import Loader from '../../Loader.jsx'
 
 const PickupPoint = () => {
     const  {

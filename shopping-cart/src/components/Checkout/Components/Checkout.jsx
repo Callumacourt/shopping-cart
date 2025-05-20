@@ -1,9 +1,9 @@
-import styles from './Checkout.module.css';
+import styles from '../CSS/Checkout.module.css'
 import DeliveryForm from './DeliveryForm';
 import PaymentForm from "./PaymentForm";
-import { DeliveryProvider } from "../../context/DeliveryContext";
-import { CartContext } from '../../context/CartContext';
-import Header from '../Header/Header'
+import { DeliveryProvider } from "../../../context/DeliveryContext";
+import { CartContext } from '../../../context/CartContext';
+import Header from '../../Header/Header'
 import { useContext, useState } from 'react';
 
 
