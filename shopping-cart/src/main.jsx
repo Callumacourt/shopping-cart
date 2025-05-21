@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import routes from './pages/routes';
 import { CartProvider } from './context/CartContext';
 import ProductsProvider from './context/ProductContext';
+import { DeliveryProvider } from './context/DeliveryContext';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -14,7 +15,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <CartProvider>
       <ProductsProvider>
-        <RouterProvider router={router} />
+        <DeliveryProvider>
+          <RouterProvider router={router} />
+        </DeliveryProvider>
       </ProductsProvider>
     </CartProvider>
   </StrictMode>

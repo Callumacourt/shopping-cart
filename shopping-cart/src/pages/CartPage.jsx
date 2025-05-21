@@ -5,9 +5,7 @@ import Cart from '../components/Cart/Cart';
 const CartPage = () => {
   return (
     <>
-      <Header />
       <Cart />
-      <Footer />
     </>
   );
 };

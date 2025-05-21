@@ -19,6 +19,7 @@ export function CartProvider({ children, initialItems = [] }) {
             }
           : item
       )
+      .filter((item) => item.qty > 0)
     );
   };
 

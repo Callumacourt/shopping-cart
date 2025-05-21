@@ -2,9 +2,13 @@ import { useState, useContext } from "react";
 import styles from '../CSS/Checkout.module.css'
 import { DeliveryContext } from '../../../context/DeliveryContext';
 import AddressForm from "./AddressForm";
+import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+ const stripePromise = loadStripe('pk_test_51RQqrnAVqhnvOcyiV5MwkTVVVovO9HR4sgdjJby2ndRyC5GBeT5sIyRfYbvpb8xYLKxpIuk8P7Ob164b7QxWJp0B00MijvFJPP')
 
 const BillingAddressSection = ({ paymentProgress, setPaymentProgress }) => {
     const {
+        billingAddress,
         setBillingAddress,
         deliveryLocation
     } = useContext(DeliveryContext);
@@ -29,81 +33,83 @@ const BillingAddressSection = ({ paymentProgress, setPaymentProgress }) => {
                     setPaymentProgress('billingAdd');
                     setActivePick('different');
                 }}
-                style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
             >
                 <div className={`${styles.pickBase} ${activePick === 'different' ? styles.activePick : ''}`} />
                 <p>Different Address</p>
             </span>
             {paymentProgress !== 'billingAdd' && (
-                <button type="button" onClick={() => setPaymentProgress('pay')}>Continue to payment</button>
+                <button type="button" onClick={() => {
+                    // Default option
+                    if (!billingAddress.address?.postcode) {
+                        setBillingAddress(deliveryLocation)
+                    }
+                    setPaymentProgress('pay')}}>Continue to payment</button>
             )}
         </>
     );
 };
 
-const PaymentDetails = ({paymentInfo, setPaymentInfo, setCheckoutProgress}) => {
+const PaymentDetails = ({setPaymentError, setCardSummary, setCheckoutProgress}) => {
+    const stripe = useStripe()
+    const elements = useElements()
+
+    const handleReviewClick = async () => {
+        setPaymentError(null)
+
+        if (!stripe || !elements) {
+            return
+        }
+
+        const cardElement = elements.getElement(CardElement)
+
+        if (!cardElement) {
+            setPaymentError('Card details not entered')
+            return
+        }
+
+        const {error, paymentMethod} = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement
+        });
+
+
+        if (error) {
+            setPaymentError(error.message)
+        }
+
+        else {
+            setCardSummary(paymentMethod.card)
+            setCheckoutProgress('review')
+        }
+
+    }
     return (
          <>
             <h2>Please enter your payment details</h2>
-            <form action="">
-                <label htmlFor="cardName">Cardholder Name</label>
-                <input
-                    id="cardName"
-                    name="cardName"
-                    type="text"
-                    value={paymentInfo.cardName || ""}
-                    onChange={e => setPaymentInfo({ ...paymentInfo, cardName: e.target.value })}
-                />
-
-                <label htmlFor="cardNum">Card number</label>
-                <input
-                    id="cardNum"
-                    name="cardNum"
-                    type="text"
-                    value={paymentInfo.cardNum || ""}
-                    onChange={e => setPaymentInfo({ ...paymentInfo, cardNum: e.target.value })}
-                />
-
-                <label htmlFor="expiryDate">Expiry date</label>
-                <input
-                    id="expiryDate"
-                    type="text"
-                    name="expiryDate"
-                    value={paymentInfo.expiryDate || ""}
-                    onChange={e => setPaymentInfo({ ...paymentInfo, expiryDate: e.target.value })}
-                />
-
-                <label htmlFor="cvc">CVC</label>
-                <input
-                    id="cvc"
-                    type="text"
-                    name="cvc"
-                    value={paymentInfo.cvc || ""}
-                    onChange={e => setPaymentInfo({ ...paymentInfo, cvc: e.target.value })}
-                />
-            </form>
-            <button type="button" onClick={() => setCheckoutProgress('review')}>Review order</button>
+            <CardElement/>
+            <button type="button" onClick={handleReviewClick}>Review order</button>
         </>
     )
 }
 
-const PaymentSummary = ({paymentInfo}) => {
+const PaymentSummary = ({cardSummary, billingAddress}) => {
     return (
         <section>
-        {paymentInfo.cardNum && (
-            <>
-                <h2>Payment</h2>
-                <p>billing address</p>
-                <p>final card digits</p>
-            </>
-        )}
+        <h3>Billing Address</h3>
+        {billingAddress?.address?.house_number && <p>{billingAddress.address.house_number}</p>}
+        {billingAddress?.address?.road && <p>{billingAddress.address.road}</p>}
+        {billingAddress?.address?.city && <p>{billingAddress.address.city}</p>}
+        {billingAddress?.address?.postcode && <p>{billingAddress.address.postcode}</p>}
+        <h3>Payment Method</h3>
+        <p>{cardSummary.last4}</p>
         </section>
     )
 }
 
 const PaymentForm = ({ checkoutProgress, setCheckoutProgress }) => {
-    const [paymentInfo, setPaymentInfo] = useState({});
     const [paymentProgress, setPaymentProgress] = useState();
+    const [paymentError, setPaymentError] = useState('')
+    const [cardSummary, setCardSummary] = useState({})
 
     const {
         billingAddress,
@@ -119,11 +125,14 @@ const PaymentForm = ({ checkoutProgress, setCheckoutProgress }) => {
             )}
 
             {checkoutProgress === 'Payment' && paymentProgress === 'pay' && (
-               <PaymentDetails 
-               paymentInfo={paymentInfo} 
-               setPaymentInfo={setPaymentInfo}
-               setCheckoutProgress = {setCheckoutProgress}
-               />
+                <Elements stripe = {stripePromise}>
+                    <PaymentDetails 
+                    setCheckoutProgress = {setCheckoutProgress} 
+                    setPaymentError={setPaymentError}
+                    setCardSummary={setCardSummary}
+                    />
+                    <small>{paymentError}</small>
+               </Elements>
             )}
 
             {checkoutProgress === 'Payment' && paymentProgress === 'billingAdd' && (
@@ -134,8 +143,8 @@ const PaymentForm = ({ checkoutProgress, setCheckoutProgress }) => {
                 </>
             )}
 
-            {checkoutProgress !== 'Payment' && (
-                <PaymentSummary paymentInfo={paymentInfo}/>
+            {checkoutProgress !== 'Payment' && cardSummary.last4 && (
+                <PaymentSummary cardSummary = {cardSummary} billingAddress={billingAddress}/>
             )}
         </div>
     );

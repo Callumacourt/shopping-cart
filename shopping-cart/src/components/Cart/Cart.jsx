@@ -49,9 +49,16 @@ const Cart = () => {
             .reduce((total, item) => total + item.price * item.qty, 0)
             .toFixed(2)}
         </span>
+        {cartItems.length > 0 ? (
         <Link to="/checkout">
         <button>Checkout</button>
         </Link>
+        ) : (
+          <>
+          <p>Looks like your basket is empty</p>
+          <Link to='/store'>Continue shopping</Link>
+          </>
+        )}
       </div>
     </>
   );

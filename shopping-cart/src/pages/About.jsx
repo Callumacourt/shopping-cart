@@ -4,9 +4,6 @@ import Footer from '../components/Footer/Footer';
 const About = () => {
   return (
     <>
-      <Header />
-
-      <Footer />
     </>
   );
 };

@@ -18,7 +18,7 @@ const HomeHero = () => {
               </p>
             </div>
             <div className={styles.buttons}>
-              <Link to="/cart">
+              <Link to="/store">
                 <button>Shop now</button>
               </Link>
               <Link to="/about">

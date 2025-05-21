@@ -3,6 +3,18 @@ import {createContext, useContext, useState} from "react"
 export const DeliveryContext = createContext()
 
 export const DeliveryProvider = ({children}) => {
+    const [checkoutProgress, setCheckoutProgress] = useState('email')
+    
+    const [userDetails, setUserDetails] = useState({
+        email: '',
+        firstName: '',
+        surname: '',
+        phoneNumber: '',
+        countryCode: '',
+    });
+
+    console.log(checkoutProgress)
+
     const [homeDelivery, setHomeDelivery] = useState(true);
     const [typingAddress, setTypingAddress] = useState('');
     const [deliveryLocation, setDeliveryLocation] = useState({});
@@ -13,6 +25,10 @@ export const DeliveryProvider = ({children}) => {
      return (
         <DeliveryContext.Provider
             value={{
+                checkoutProgress,
+                setCheckoutProgress,
+                userDetails,
+                setUserDetails,
                 homeDelivery,
                 setHomeDelivery,
                 typingAddress,

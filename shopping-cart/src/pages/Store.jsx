@@ -1,13 +1,9 @@
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
 import Products from '../components/Products/Products';
 
 const Store = () => {
   return (
     <>
-      <Header />
       <Products />
-      <Footer />
     </>
   );
 };

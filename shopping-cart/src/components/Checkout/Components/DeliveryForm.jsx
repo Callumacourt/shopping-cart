@@ -8,29 +8,29 @@ import countries from "i18n-iso-countries";
 import en from "i18n-iso-countries/langs/en.json";
 countries.registerLocale(en);
 
-const EmailStep = ({userDetails, handleUserDetailsChange, setCheckoutProgress}) => {
-    const [emailError, setEmailError] = useState('')
-    const userEmail = userDetails.email
+const EmailStep = ({ userDetails, handleUserDetailsChange, setCheckoutProgress }) => {
+    const [emailError, setEmailError] = useState('');
+    const userEmail = userDetails.email;
 
     const handleEmailSubmission = () => {
-        const emailError = validateEmail(userEmail)
-        emailError === false ? setCheckoutProgress('shipping') : setEmailError(emailError)
-    }
+        const emailError = validateEmail(userEmail);
+        emailError === false ? setCheckoutProgress('shipping') : setEmailError(emailError);
+    };
 
     return (
         <form className={styles.checkoutForm} id="emailForm" action="">
             <label htmlFor="email"><h2>Please enter your email address</h2></label>
-            <input  
-                onChange={(e) => {   
+            <input
+                onChange={(e) => {
                     handleUserDetailsChange(e)
                     if (validateEmail(e.target.value)) {
                         setEmailError('')
                     }
                 }}
-                name="email" 
-                id="email" 
+                name="email"
+                id="email"
                 type="email"
-                value={userEmail} 
+                value={userEmail}
             />
             <small id='emailError' className={`${styles.error} ${styles.emailError}`}>{emailError}</small>
             <button
@@ -43,7 +43,7 @@ const EmailStep = ({userDetails, handleUserDetailsChange, setCheckoutProgress}) 
     )
 }
 
-const EmailSummary = ({userDetails, setCheckoutProgress}) => (
+const EmailSummary = ({ userDetails, setCheckoutProgress }) => (
     <span className={styles.userEmail}>
         <h2>Welcome, guest</h2>
         <h3>Email</h3>
@@ -52,7 +52,7 @@ const EmailSummary = ({userDetails, setCheckoutProgress}) => (
     </span>
 );
 
-const ShippingStep = ({userDetails, handleUserDetailsChange, setCheckoutProgress}) => {
+const ShippingStep = ({ userDetails, handleUserDetailsChange, setCheckoutProgress }) => {
     const {
         homeDelivery,
         setHomeDelivery,
@@ -69,11 +69,11 @@ const ShippingStep = ({userDetails, handleUserDetailsChange, setCheckoutProgress
             setCheckoutProgress('Payment');
         }
     };
-    
+
     const countryList = useMemo(() => {
         const list = countries.getNames("en", { select: "official" });
         return Object.entries(list).map(([code, name]) => ({ code, name }));
-    }, [])
+    }, []);
 
     return (
         <>
@@ -97,7 +97,7 @@ const ShippingStep = ({userDetails, handleUserDetailsChange, setCheckoutProgress
                     <label htmlFor="firstName">First Name</label>
                     <input
                         onChange={handleUserDetailsChange}
-                        value={userDetails.first_name}
+                        value={userDetails.firstName}
                         type="text"
                         className={styles.firstName}
                         id="firstName"
@@ -123,7 +123,7 @@ const ShippingStep = ({userDetails, handleUserDetailsChange, setCheckoutProgress
                     <label htmlFor="phoneNumber">Phone Number</label>
                     <input
                         onChange={handleUserDetailsChange}
-                        value={userDetails.phone_number}
+                        value={userDetails.phoneNumber}
                         type="tel"
                         className={styles.phoneNumber}
                         id="phoneNumber"
@@ -140,10 +140,10 @@ const ShippingStep = ({userDetails, handleUserDetailsChange, setCheckoutProgress
                 </span>
 
                 {homeDelivery
-                    ? <AddressForm 
-                        countryCode={userDetails.countryCode} 
-                        deliveryLocation={deliveryLocation} 
-                        setDeliveryLocation={setDeliveryLocation}/>
+                    ? <AddressForm
+                        countryCode={userDetails.countryCode}
+                        deliveryLocation={deliveryLocation}
+                        setDeliveryLocation={setDeliveryLocation} />
                     : <PickupPoint countryCode={userDetails.countryCode} />
                 }
 
@@ -188,14 +188,13 @@ const ShippingSummary = ({ setCheckoutProgress }) => {
     );
 };
 
-const DeliveryForm = ({ checkoutProgress, setCheckoutProgress }) => {
-    const [userDetails, setUserDetails] = useState({
-        email: '',
-        firstName: '',
-        surname: '',
-        phoneNumber: '',
-        countryCode: '',
-    });
+const DeliveryForm = () => {
+    const {
+        checkoutProgress,
+        setCheckoutProgress,
+        userDetails,
+        setUserDetails
+    } = useContext(DeliveryContext);
 
     // Generic handler for userDetails fields
     const handleUserDetailsChange = (e) => {
@@ -210,13 +209,13 @@ const DeliveryForm = ({ checkoutProgress, setCheckoutProgress }) => {
         <>
             <div className={`${styles.card} ${styles.email}`}>
                 {checkoutProgress === 'email' ? (
-                    <EmailStep 
-                        userDetails={userDetails} 
+                    <EmailStep
+                        userDetails={userDetails}
                         setCheckoutProgress={setCheckoutProgress}
                         handleUserDetailsChange={handleUserDetailsChange}
                     />
                 ) : (
-                    <EmailSummary 
+                    <EmailSummary
                         userDetails={userDetails}
                         setCheckoutProgress={setCheckoutProgress}
                     />
@@ -225,7 +224,7 @@ const DeliveryForm = ({ checkoutProgress, setCheckoutProgress }) => {
 
             <div className={`${styles.card} ${styles.shipping}`}>
                 {checkoutProgress === 'shipping' ? (
-                    <ShippingStep 
+                    <ShippingStep
                         userDetails={userDetails}
                         handleUserDetailsChange={handleUserDetailsChange}
                         setCheckoutProgress={setCheckoutProgress}

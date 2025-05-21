@@ -17,7 +17,6 @@ export default function ProductPage() {
 
   return (
     <>
-      <Header />
       <div className="container">
         <div className="imageContainer">
           <img src={selectedProduct.image} alt={selectedProduct.title} />
@@ -29,7 +28,6 @@ export default function ProductPage() {
           <AddToCart product={selectedProduct} />
         </div>
       </div>
-      <Footer />
     </>
   );
 }
