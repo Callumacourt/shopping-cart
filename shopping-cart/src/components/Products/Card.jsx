@@ -1,5 +1,4 @@
 import styles from './Products.module.css';
-import AddToCart from './AddToCart';
 import { Link } from 'react-router-dom';
 
 const Card = ({ product }) => {
@@ -16,14 +15,12 @@ const Card = ({ product }) => {
           </div>
         </Link>
         <div className={styles.productData}>
-          <span>
+          <span className={styles.productHeader}>
             <p className={styles.productTitle}>{product.title}</p>
+            <p><i>{product.category}</i></p>
           </span>
-          <span>
-            <p>{product.price}</p>
-          </span>
-          <span>
-            <AddToCart product={product} />
+          <span className={styles.priceContainer}>
+            <p><b>£{product.price}</b></p>
           </span>
         </div>
       </div>

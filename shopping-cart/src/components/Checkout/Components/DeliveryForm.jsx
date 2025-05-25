@@ -1,6 +1,6 @@
 import styles from '../CSS/Checkout.module.css'
 import { useContext, useMemo, useState } from 'react';
-import { validateEmail, validateShipping } from '../Js/validate';
+import { validateEmail, validateShipping} from '../Js/validate';
 import { DeliveryContext } from '../../../context/DeliveryContext';
 import AddressForm from './AddressForm';
 import PickupPoint from './PickupPoint';

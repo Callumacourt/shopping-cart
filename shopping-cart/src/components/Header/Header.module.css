@@ -1,3 +1,17 @@
+@media (min-width: 1024px) {
+  .navlinks {
+    gap: 50px;
+  }
+
+  .searchBarContainer {
+    width: 60vmin;
+  }
+
+  .searchBar {
+    height: 4vmin;
+  }
+}
+
 .header {
   background-color: #254453;
   color: white;
@@ -10,7 +24,12 @@
   position: sticky;
   box-sizing: border-box;
   z-index: 100;
+  padding: 1% 5%;
   width: 100%;
+}
+
+.header button {
+  background-color: #254453;
 }
 
 .header_icons {
@@ -28,22 +47,21 @@
 
 .navlinks {
   display: flex;
-  gap: 50px;
   list-style: none;
+  gap: 20px; 
 }
 
 .searchBarContainer {
   position: relative;
-  width: 60vmin;
+  width: 100%; 
 }
 
 .searchBar {
-  height: 4vmin;
+  height: 5vmin;
   border-radius: 50px;
   width: 100%;
-  cursor: text;
-  border: 1px solid grey;
   cursor: pointer;
+  border: 1px solid grey;
 }
 
 .dropdown {
@@ -63,4 +81,35 @@
 
 .dropdown h1 {
   font-size: 1em;
+}
+
+.navDropdown, .searchModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  background-color: white;
+  color: black;
+  flex-direction: column;
+  justify-items: center;
+  padding-top: 5%;
+  height: 100vh;
+  width: 100vw;
+}
+
+.navDropdown button {
+  width: fit-content;
+  background-color: white;
+  align-self: flex-end;
+  color: black;
+  font-weight: bold;
+}
+
+.navDropdown ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  gap: 20px;
 }

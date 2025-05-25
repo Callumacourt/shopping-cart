@@ -144,7 +144,10 @@ const PaymentForm = ({ checkoutProgress, setCheckoutProgress }) => {
             )}
 
             {checkoutProgress !== 'Payment' && cardSummary.last4 && (
+                <>
                 <PaymentSummary cardSummary = {cardSummary} billingAddress={billingAddress}/>
+                <button onClick={() => setCheckoutProgress('Payment')}>Edit</button>
+                </>
             )}
         </div>
     );

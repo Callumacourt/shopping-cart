@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
+import styles from './Products.module.css'
 
 const AddToCart = ({ product }) => {
   const { addFunction } = useCart();
   const [qtyToAdd, setQtyToAdd] = useState(1);
 
   return (
-    <div>
+    <div className = {styles.addToCart}>
       <div>
         <button onClick={() => setQtyToAdd((prev) => Math.max(1, prev - 1))}>
           -

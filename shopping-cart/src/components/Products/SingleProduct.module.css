@@ -1,0 +1,68 @@
+body {
+  color: black;
+  background-color: white;
+}
+
+.imgContainer {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+}
+
+.imgContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.content {
+    padding: 1rem;
+}
+
+.fullStar {
+  filter: none;
+  opacity: 1;
+  color: black;
+}
+
+.emptyStar {
+  filter: grayscale(1) brightness(2);
+  opacity: 0.4;
+  color: #ddd;
+}
+
+.rating {
+  display: flex;
+  align-items: start;
+  font-size: 2rem;
+  gap: 2px;
+}
+
+.ratingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.halfStar {
+  color: #ddd; 
+  position: relative;
+  display: inline-block;
+}
+
+.halfStar::before {
+  content: '★';
+  color: black; 
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  display: block;
+  z-index: 1;
+  clip-path: inset(0 0 0 0); 
+}

@@ -11,6 +11,7 @@ import { useContext} from 'react';
 const Checkout = () => {
 
     const cartItems = useContext(CartContext)
+    const {checkoutProgress, setCheckoutProgress} = useContext(DeliveryContext)
    
     return (
         <>
@@ -29,7 +30,7 @@ const Checkout = () => {
                     
                     </div>
                     <div className={`${styles.card} ${styles.payment}`}>
-                        <PaymentForm/>
+                        <PaymentForm checkoutProgress={checkoutProgress} setCheckoutProgress={setCheckoutProgress}/>
                     </div>
                 </div>
             </section>

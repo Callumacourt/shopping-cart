@@ -1,3 +1,4 @@
+
 export const validateEmail = (email) => { 
     if (!email || email.trim() === '') return 'This field is required'
 
@@ -21,6 +22,7 @@ export const validateShipping = (userDetails, deliveryLocation) => {
     if (!userDetails.surname.trim()) errors.surname = "Last name is required";
     if (!userDetails.phoneNumber.trim()) errors.phoneNumber = "Phone number is required";
     if (!userDetails.countryCode) errors.country = "Country is required";
+    
     const hasHomeAddress = deliveryLocation.address?.postcode;
     const hasPickUp = deliveryLocation.postcode
     if (! hasHomeAddress && !hasPickUp) {

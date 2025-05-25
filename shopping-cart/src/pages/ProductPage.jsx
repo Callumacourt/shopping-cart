@@ -1,8 +1,8 @@
 import { useProducts } from '../context/ProductContext';
 import { useParams } from 'react-router-dom';
 import AddToCart from '../components/Products/AddToCart';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+import styles from '../components/Products/SingleProduct.module.css'
+import ProductStars from '../components/Products/ProductStars';
 
 export default function ProductPage() {
   const { productData, error, loading } = useProducts();
@@ -17,17 +17,22 @@ export default function ProductPage() {
 
   return (
     <>
-      <div className="container">
-        <div className="imageContainer">
+    {console.log(productData)}
+      <main className={styles.container}>
+        <div className={styles.imgContainer}>
           <img src={selectedProduct.image} alt={selectedProduct.title} />
         </div>
-        <div className="content">
+        <section className={styles.content}>
           <h2>{selectedProduct.title}</h2>
+          <span className={styles.ratingWrapper}>
+            <ProductStars rating={selectedProduct.rating.rate}/>
+            <p>{selectedProduct.rating.count} Reviews</p>
+            </span>
           <p>{selectedProduct.price}</p>
           <p>{selectedProduct.description}</p>
           <AddToCart product={selectedProduct} />
-        </div>
-      </div>
+        </section>
+      </main>
     </>
   );
 }
