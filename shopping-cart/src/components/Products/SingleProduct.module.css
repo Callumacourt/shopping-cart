@@ -47,6 +47,11 @@ body {
   gap: 1.5rem;
 }
 
+.productInfo p {
+  margin-bottom: 1rem;
+}
+
+
 .halfStar {
   color: #ddd; 
   position: relative;

@@ -8,14 +8,16 @@ const AddToCart = ({ product }) => {
 
   return (
     <div className = {styles.addToCart}>
-      <div>
-        <button onClick={() => setQtyToAdd((prev) => Math.max(1, prev - 1))}>
+      <div className = {styles.qtyWrapper}>
+        <button className = {styles.qtyBtn}
+         onClick={() => setQtyToAdd((prev) => Math.max(1, prev - 1))}>
           -
         </button>
         <span>{qtyToAdd}</span>
-        <button onClick={() => setQtyToAdd((prev) => prev + 1)}>+</button>
+        <button className = {styles.qtyBtn} onClick={() => setQtyToAdd((prev) => prev + 1)}>+</button>
       </div>
       <button
+        className = {styles.addToCartBtn}
         onClick={() => {
           addFunction({ product, quantity: qtyToAdd });
           setQtyToAdd(1);

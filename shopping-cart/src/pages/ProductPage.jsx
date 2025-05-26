@@ -28,8 +28,10 @@ export default function ProductPage() {
             <ProductStars rating={selectedProduct.rating.rate}/>
             <p>{selectedProduct.rating.count} Reviews</p>
             </span>
-          <p>{selectedProduct.price}</p>
-          <p>{selectedProduct.description}</p>
+            <span className = {styles.productInfo}>
+              <p>{selectedProduct.price}</p>
+              <p>{selectedProduct.description}</p>
+            </span>
           <AddToCart product={selectedProduct} />
         </section>
       </main>

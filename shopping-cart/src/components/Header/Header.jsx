@@ -17,7 +17,7 @@ const MobileHeader = ({cartItems}) => {
     <img className={styles.logo} src={logo} alt="A dummy logo" />
   </Link>
   <Link to="/cart">
-      <button>
+      <button className = {styles.header_icons}>
         <img src={cartIcn} alt="Shopping Cart" />
         <span>{cartItems.length}</span>
       </button>

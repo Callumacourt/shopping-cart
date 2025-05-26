@@ -7,7 +7,7 @@ const NavDropdown = () => {
     const [expand, setExpand] = useState(false)
     return (
         <>
-            <img src={menu} alt='A menu dropdown icons' onClick={() => {expand ? setExpand(false) : setExpand(true)}} />
+            <img src={menu} className = {styles.header_icons} alt='A menu dropdown icons' onClick={() => {expand ? setExpand(false) : setExpand(true)}} />
             {expand && (
                 <section className={styles.navDropdown}>
                 <button onClick={() => {setExpand(false)}}>{<img src={x} alt='Close button X'/>}</button>

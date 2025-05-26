@@ -1,100 +1,127 @@
-@media (min-width: 1024px) {
-  .navlinks {
-    gap: 50px;
-  }
-
-  .searchBarContainer {
-    width: 60vmin;
-  }
-
-  .searchBar {
-    height: 4vmin;
-  }
-}
-
+/* --- Layout & Header --- */
 .header {
   background-color: #254453;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 1vw;
-  padding-right: 1vw;
+  padding: 3vw 6vw;
   top: 0px;
   position: sticky;
   box-sizing: border-box;
   z-index: 100;
-  padding: 1% 5%;
   width: 100%;
-}
-
-.header button {
-  background-color: #254453;
-}
-
-.header_icons {
-  display: flex;
-  gap: 20px;
-}
-
-.header_icons button {
-  background: none;
 }
 
 .logo {
   fill: white;
+  height: 2.2rem;
 }
 
+/* --- Icon & Button Styles --- */
+.header_icons,
+.header_icons button {
+  padding: 0.1rem 0.3rem;
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.header_icons {
+  width: 1.85rem;
+  height: 1.85rem;
+  margin-right: 0.2rem;
+}
+
+.header_icons span {
+  font-size: 0.95rem;
+}
+
+.header button {
+  background-color: #254453;
+  display: flex;
+  align-items: center;
+  padding: 0.1rem 0.3rem;
+  border: none;
+}
+
+/* --- Navigation Links --- */
 .navlinks {
   display: flex;
   list-style: none;
-  gap: 20px; 
+  gap: 20px;
 }
 
+@media (min-width: 1024px) {
+  .navlinks {
+    gap: 50px;
+  }
+  .searchBarContainer {
+    width: 60vmin;
+  }
+  .searchBar {
+    height: 4vmin;
+  }
+}
+
+.linksContainer {
+  display: flex;
+  align-items: center;
+}
+
+/* --- Search Bar --- */
 .searchBarContainer {
   position: relative;
-  width: 100%; 
+  width: 100%;
 }
 
 .searchBar {
-  height: 5vmin;
+  height: 2rem;
   border-radius: 50px;
   width: 100%;
   cursor: pointer;
   border: 1px solid grey;
+  background-color: lightgray;
+  color: black;
+  padding: 1rem;
+  font-size: 1rem;
 }
 
+/* --- Dropdowns --- */
 .dropdown {
-  position: absolute;
   background-color: white;
-  border: 1px solid #e2e2e2;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 50;
-  left: 0;
-  right: 0;
   margin-top: 4px;
   width: 100%;
   box-sizing: border-box;
-  top: 100%;
 }
 
-.dropdown h1 {
+.dropdown h3 {
   font-size: 1em;
+  color: black;
+  margin-bottom: 1rem;
 }
 
-.navDropdown, .searchModal {
+/* --- Modal & Nav Dropdown Shared Styles --- */
+.searchModal,
+.navDropdown {
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
   background-color: white;
   color: black;
-  flex-direction: column;
-  justify-items: center;
-  padding-top: 5%;
   height: 100vh;
   width: 100vw;
+  padding-top: 5%;
+}
+
+/* --- Nav Dropdown --- */
+.navDropdown {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }
 
 .navDropdown button {
@@ -112,4 +139,32 @@
   font-size: 1.5rem;
   letter-spacing: 0.05em;
   gap: 20px;
+}
+
+/* --- Search Modal --- */
+.searchModal {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: min-content auto;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+}
+
+.searchModal input {
+  grid-column: 1;
+  grid-row: 1;
+  padding: 1,5rem;
+}
+
+.searchModal button {
+  align-self: center;
+}
+
+.searchModal button {
+  height: fit-content;
+  color: black;
+  background-color: white;
+  text-decoration: underline;
+  letter-spacing: 0.05em;
+  grid-column: 2;
 }
