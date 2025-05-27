@@ -1,0 +1,116 @@
+.cart {
+    min-height: 80vh;
+}
+
+.checkoutCard {
+    display: flex;
+    gap: 2vw;
+    padding: 1vw;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.cardUpper {
+    display: flex;
+    width: 100%;
+    font-weight: bold;
+    justify-content: space-between;
+    padding-right: 1rem;
+}
+
+.cartEnd {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cartEnd button {
+    background-color:#254453;
+    width: 90vw;
+    color: white;
+}
+
+.itemTitle {
+    width: 55%;
+} 
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.imgWrapper {
+    width: 7rem;
+    height: 7rem;
+    aspect-ratio: 1 / 1;
+}
+
+.imgWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+select {
+    width: 15vw;
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid black;
+    color: black;
+    appearance: none;     /* Remove native arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 1rem;
+}
+
+.selectWrapper {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+}
+
+.selectWrapper::after {
+content: "▼";
+  position: absolute;
+  right: 0.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+h3 {
+    margin: 1rem;
+}
+
+.editSection button {
+    width: fit-content;
+    background-color: white;
+    padding: 0;
+}
+
+.editSection {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.editSection:last-child {
+    margin-right: 1rem;
+}
+
+.orderSummary {
+    background-color: #f2f2f2;
+    padding: 1rem 2rem;
+}
+
+.orderSummary * {
+    margin-bottom: 2vh;
+}
+
+.orderSummary span {
+    display: flex;
+    justify-content: space-between;
+}

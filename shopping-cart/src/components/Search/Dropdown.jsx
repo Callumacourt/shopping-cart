@@ -1,7 +1,7 @@
-import { Link, matchPath } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import styles from '../Header/header.module.css';
 
-export default function Dropdown({searchTerm, matches }) {
+export default function Dropdown({setMobileExpanded, searchTerm, matches }) {
 
   const sliceMatch = (searchTerm, match) => {
 
@@ -25,7 +25,7 @@ export default function Dropdown({searchTerm, matches }) {
           return (
             <div key={match.id}>
               <Link to={`/product/${match.id}`}>
-                <span>
+                <span onClick={() => setMobileExpanded(false)}>
                   <h3>
                     {before}
                     <strong>{matchPart}</strong>

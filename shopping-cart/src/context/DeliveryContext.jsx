@@ -12,9 +12,6 @@ export const DeliveryProvider = ({children}) => {
         phoneNumber: '',
         countryCode: '',
     });
-
-    console.log(checkoutProgress)
-
     const [homeDelivery, setHomeDelivery] = useState(true);
     const [typingAddress, setTypingAddress] = useState('');
     const [deliveryLocation, setDeliveryLocation] = useState({});

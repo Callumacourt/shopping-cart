@@ -18,7 +18,6 @@ const AddressForm = ({countryCode, deliveryLocation, setDeliveryLocation}) => {
   const debounceTimer = useRef()
 
   const handleInput = (e) => {
-    console.log(deliveryLocation)
       const value = e.target.value;
       setTypingAddress(value)
       clearTimeout(debounceTimer.current)

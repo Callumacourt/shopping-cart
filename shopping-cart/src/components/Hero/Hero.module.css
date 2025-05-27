@@ -3,6 +3,9 @@
   src: url('../../assets/Fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf');
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Slab:wght@400;700&family=Quicksand:wght@400;700&display=swap');
+ 
+
 .imageContainer {
   position: relative;
   height: 100%;
@@ -17,10 +20,14 @@ section {
 .container {
   position: absolute;
   width: 40%;
-  top: 50%;
+  top: 40%;
   left: 20%;
   transform: translateY(-50%);
   z-index: 2;
+}
+
+.container p, .container button {
+  margin-top: 1.5rem;
 }
 
 .container button {
@@ -49,6 +56,12 @@ section {
   font-weight: bold;
   font-size: clamp(1rem, 2vw, 2rem);
   max-width: 100%;
+}
+
+.textWrapper p {
+  font-family: 'Montserrat', 'grand', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .textWrapper h3 {

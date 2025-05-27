@@ -6,6 +6,7 @@ export default function ProductsProvider({ children }) {
   const [productData, setProductData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState(`women's clothing`)
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products', { mode: 'cors' })
@@ -21,7 +22,7 @@ export default function ProductsProvider({ children }) {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ productData, error, loading }}>
+    <ProductsContext.Provider value={{ productData, error, loading, category, setCategory }}>
       {children}
     </ProductsContext.Provider>
   );

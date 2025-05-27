@@ -1,25 +1,25 @@
-body {
+body, .content{
   color: black;
-  background-color: white;
+  background-color: white !important;
 }
 
 .imgContainer {
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    margin: 1rem;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin: 1rem;
 }
 
 .imgContainer img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .content {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .fullStar {
@@ -30,8 +30,8 @@ body {
 
 .emptyStar {
   filter: grayscale(1) brightness(2);
-  opacity: 0.4;
-  color: #ddd;
+  opacity: 0.2;
+  color: black;
 }
 
 .rating {

@@ -37,9 +37,7 @@ export default async function fetchNearbyLockers(postcode) {
         }
 
         const overpassData = await overpassResponse.json();
-        console.log(overpassData)
-
-
+        
         const pickupLocations = await Promise.all(
             overpassData.elements.map(async el => {
             let address = {};

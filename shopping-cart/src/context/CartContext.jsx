@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from 'react';
-
 export const CartContext = createContext();
 
 export function CartProvider({ children, initialItems = [] }) {
@@ -22,6 +21,18 @@ export function CartProvider({ children, initialItems = [] }) {
       .filter((item) => item.qty > 0)
     );
   };
+
+  const setQty = ({itemTitle, amount}) => {
+    setCartItems((prevItems) => 
+      prevItems.map((item) => 
+      item.title == itemTitle
+        ? {
+          ...item,
+          qty: amount
+        }
+        : item
+      ))
+  }
 
   const addFunction = ({ product, quantity = 1 }) => {
     setCartItems((prevItems) => {
@@ -51,6 +62,7 @@ export function CartProvider({ children, initialItems = [] }) {
         removeFromCart,
         addFunction,
         handleQty,
+        setQty,
       }}
     >
       {children}

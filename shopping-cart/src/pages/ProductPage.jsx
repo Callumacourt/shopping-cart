@@ -17,7 +17,6 @@ export default function ProductPage() {
 
   return (
     <>
-    {console.log(productData)}
       <main className={styles.container}>
         <div className={styles.imgContainer}>
           <img src={selectedProduct.image} alt={selectedProduct.title} />
@@ -29,7 +28,7 @@ export default function ProductPage() {
             <p>{selectedProduct.rating.count} Reviews</p>
             </span>
             <span className = {styles.productInfo}>
-              <p>{selectedProduct.price}</p>
+              <p>£{selectedProduct.price}</p>
               <p>{selectedProduct.description}</p>
             </span>
           <AddToCart product={selectedProduct} />
