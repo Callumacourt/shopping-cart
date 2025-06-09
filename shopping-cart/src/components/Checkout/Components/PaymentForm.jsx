@@ -4,7 +4,7 @@ import { DeliveryContext } from '../../../context/DeliveryContext';
 import AddressForm from "./AddressForm";
 import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
- const stripePromise = loadStripe('pk_test_51RQqrnAVqhnvOcyiV5MwkTVVVovO9HR4sgdjJby2ndRyC5GBeT5sIyRfYbvpb8xYLKxpIuk8P7Ob164b7QxWJp0B00MijvFJPP')
+const stripePromise = loadStripe('pk_test_51RQqrnAVqhnvOcyiV5MwkTVVVovO9HR4sgdjJby2ndRyC5GBeT5sIyRfYbvpb8xYLKxpIuk8P7Ob164b7QxWJp0B00MijvFJPP')
 
 const BillingAddressSection = ({ paymentProgress, setPaymentProgress }) => {
     const {
@@ -21,7 +21,7 @@ const BillingAddressSection = ({ paymentProgress, setPaymentProgress }) => {
             <span
                 onClick={() => {
                     setBillingAddress(deliveryLocation);
-                    setPaymentProgress('pay');
+                    setPaymentProgress('billing');
                     setActivePick('same');
                 }}
             >
@@ -72,16 +72,12 @@ const PaymentDetails = ({setPaymentError, setCardSummary, setCheckoutProgress}) 
             card: cardElement
         });
 
-
         if (error) {
             setPaymentError(error.message)
-        }
-
-        else {
+        } else {
             setCardSummary(paymentMethod.card)
             setCheckoutProgress('review')
         }
-
     }
     return (
          <>
@@ -90,6 +86,26 @@ const PaymentDetails = ({setPaymentError, setCardSummary, setCheckoutProgress}) 
             <button type="button" onClick={handleReviewClick}>Review order</button>
         </>
     )
+}
+
+const BillingSummary = ({billingAddress, setPaymentProgress}) => {
+    return (
+        <section className={styles.billingSummary}>
+            <h3>Billing Address</h3>
+            <div>
+                {billingAddress?.address?.house_number && (
+                    <p>
+                        {billingAddress.address.house_number}
+                        {billingAddress?.address?.road && ` ${billingAddress.address.road}`}
+                    </p>
+                )}
+                {billingAddress?.address?.town && <p>{billingAddress.address.town}</p>}
+                {billingAddress?.address?.city && <p>{billingAddress.address.city}</p>}
+                {billingAddress?.address?.postcode && <p>{billingAddress.address.postcode}</p>}
+            </div>
+            <button onClick={() => setPaymentProgress('billing')}>Edit</button>
+        </section>
+    );
 }
 
 const PaymentSummary = ({cardSummary, billingAddress}) => {
@@ -117,36 +133,48 @@ const PaymentForm = ({ checkoutProgress, setCheckoutProgress }) => {
     } = useContext(DeliveryContext);
 
     return (
-        <div className={styles.card}>
-            {checkoutProgress === 'Payment' && !paymentProgress && (
-                <BillingAddressSection 
-                paymentProgress={paymentProgress} 
-                setPaymentProgress={setPaymentProgress} />
-            )}
-
-            {checkoutProgress === 'Payment' && paymentProgress === 'pay' && (
-                <Elements stripe = {stripePromise}>
-                    <PaymentDetails 
-                    setCheckoutProgress = {setCheckoutProgress} 
-                    setPaymentError={setPaymentError}
-                    setCardSummary={setCardSummary}
-                    />
-                    <small>{paymentError}</small>
-               </Elements>
-            )}
-
-            {checkoutProgress === 'Payment' && paymentProgress === 'billingAdd' && (
+        <div className={`${styles.card} ${styles.payment}`}>
+            {checkoutProgress === 'Payment' && (
                 <>
-                    <h3>Enter a different billing address</h3>
-                    <AddressForm countryCode={'+44'} deliveryLocation={billingAddress} setDeliveryLocation={setBillingAddress}/>
-                    <button type="button" onClick={() => setPaymentProgress('pay')}>Continue to payment</button>
+                    {paymentProgress !== 'pay' && (
+                        <BillingAddressSection 
+                            paymentProgress={paymentProgress} 
+                            setPaymentProgress={setPaymentProgress} 
+                        />
+                    )}
+                    {paymentProgress === 'billingAdd' && (
+                        <>
+                            <h3>Enter a different billing address</h3>
+                            {/* AddressForm should NOT render a .card */}
+                            <AddressForm 
+                                countryCode={'+44'} 
+                                deliveryLocation={billingAddress} 
+                                setDeliveryLocation={setBillingAddress}
+                            />
+                            <button type="button" onClick={() => setPaymentProgress('pay')}>Continue to payment</button>
+                        </>
+                    )}
+                    {paymentProgress === 'pay' && (
+                        <Elements stripe={stripePromise}>
+                            <BillingSummary 
+                                billingAddress={billingAddress} 
+                                setPaymentProgress={setPaymentProgress}
+                            />
+                            <PaymentDetails 
+                                setCheckoutProgress={setCheckoutProgress} 
+                                setPaymentError={setPaymentError}
+                                setCardSummary={setCardSummary}
+                            />
+                            <small>{paymentError}</small>
+                        </Elements>
+                    )}
                 </>
             )}
 
             {checkoutProgress !== 'Payment' && cardSummary.last4 && (
                 <>
-                <PaymentSummary cardSummary = {cardSummary} billingAddress={billingAddress}/>
-                <button onClick={() => setCheckoutProgress('Payment')}>Edit</button>
+                    <PaymentSummary cardSummary={cardSummary} billingAddress={billingAddress}/>
+                    <button onClick={() => setCheckoutProgress('Payment')}>Edit</button>
                 </>
             )}
         </div>

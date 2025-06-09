@@ -44,12 +44,14 @@ const EmailStep = ({ userDetails, handleUserDetailsChange, setCheckoutProgress }
 }
 
 const EmailSummary = ({ userDetails, setCheckoutProgress }) => (
+    <>
+    <h2>Welcome, guest</h2>
     <span className={styles.userEmail}>
-        <h2>Welcome, guest</h2>
         <h3>Email</h3>
         <p>{userDetails.email}</p>
         <button onClick={() => setCheckoutProgress('email')}>Edit</button>
     </span>
+    </>
 );
 
 const ShippingStep = ({ userDetails, handleUserDetailsChange, setCheckoutProgress }) => {
@@ -79,12 +81,13 @@ const ShippingStep = ({ userDetails, handleUserDetailsChange, setCheckoutProgres
         <>
             <h2>Where should we send it?</h2>
             <form className={styles.checkoutForm} id="shippingForm" action="">
-                <label htmlFor="countryCode">Country / Region</label>
+                <label htmlFor="countryCode" className={styles['countrySelect']}>Country / Region *</label>
                 <select
                     onChange={handleUserDetailsChange}
                     name="countryCode"
                     id="countryCode"
                     value={userDetails.countryCode}
+                    placeholder="Country / Region"
                 >
                     <option value="">Select a country</option>
                     {countryList.map(({ code, name }) => (
@@ -94,7 +97,7 @@ const ShippingStep = ({ userDetails, handleUserDetailsChange, setCheckoutProgres
                 <small className={styles.error}>{shippingErrors.country}</small>
 
                 <span className={styles.nameIn}>
-                    <label htmlFor="firstName">First Name</label>
+                    <label htmlFor="firstName" className={styles['sr-only']}>First Name</label>
                     <input
                         onChange={handleUserDetailsChange}
                         value={userDetails.firstName}
@@ -104,10 +107,11 @@ const ShippingStep = ({ userDetails, handleUserDetailsChange, setCheckoutProgres
                         name="firstName"
                         required
                         autoComplete="given-name"
+                        placeholder="First Name"
                     />
                     <small className={styles.error}>{shippingErrors.first_name}</small>
 
-                    <label htmlFor="surname">Surname</label>
+                    <label htmlFor="surname" className={styles['sr-only']}>Surname</label>
                     <input
                         onChange={handleUserDetailsChange}
                         value={userDetails.surname}
@@ -117,10 +121,11 @@ const ShippingStep = ({ userDetails, handleUserDetailsChange, setCheckoutProgres
                         name="surname"
                         required
                         autoComplete="family-name"
+                        placeholder="Surname"
                     />
                     <small className={styles.error}>{shippingErrors.surname}</small>
 
-                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <label htmlFor="phoneNumber" className={styles['sr-only']}>Phone Number</label>
                     <input
                         onChange={handleUserDetailsChange}
                         value={userDetails.phoneNumber}
@@ -130,13 +135,14 @@ const ShippingStep = ({ userDetails, handleUserDetailsChange, setCheckoutProgres
                         name="phoneNumber"
                         required
                         autoComplete="tel"
+                        placeholder="Phone Number"
                     />
                     <small className={styles.error}>{shippingErrors.phoneNumber}</small>
                 </span>
 
-                <span>
+                <span className = {styles.devOption}>
                     <button type="button" onClick={() => setHomeDelivery(true)}>Delivery</button>
-                    <button type="button" onClick={() => setHomeDelivery(false)}>Pick up point</button>
+                    <button type="button" onClick={() => setHomeDelivery(false)}>Pick-up point</button>
                 </span>
 
                 {homeDelivery
@@ -166,24 +172,29 @@ const ShippingSummary = ({ setCheckoutProgress }) => {
     return (
         <section>
             <h2>Shipping</h2>
-            <h4>Ship to</h4>
-            <span className={styles.addressSummary}>
-                {/* For home delivery */}
-                {deliveryLocation.address && (
-                    <>
-                        {deliveryLocation.address.house_number && <p>{deliveryLocation.address.house_number}</p>}
-                        {deliveryLocation.address.road && <p>{deliveryLocation.address.road}</p>}
-                        {deliveryLocation.address.city && <p>{deliveryLocation.address.city}</p>}
-                        {deliveryLocation.address.postcode && <p>{deliveryLocation.address.postcode}</p>}
-                    </>
-                )}
-                {/* For pickup point */}
-                {deliveryLocation.name && <p>{deliveryLocation.name}</p>}
-                {deliveryLocation.street && <p>{deliveryLocation.street}</p>}
-                {deliveryLocation.city && <p>{deliveryLocation.city}</p>}
-                {deliveryLocation.postcode && <p>{deliveryLocation.postcode}</p>}
-            </span>
-            <button onClick={() => setCheckoutProgress('shipping')}>Edit</button>
+            <div className={styles.shippingWrapper}>
+                <h4>Ship to</h4>
+                <span className={styles.addressSummary}>
+                    {/* For home delivery */}
+                    {deliveryLocation.address ? (
+                        <>
+                            {deliveryLocation.address.house_number && <p>{deliveryLocation.address.house_number}</p>}
+                            {deliveryLocation.address.road && <p>{deliveryLocation.address.road}</p>}
+                            {deliveryLocation.address.city && <p>{deliveryLocation.address.city}</p>}
+                            {deliveryLocation.address.postcode && <p>{deliveryLocation.address.postcode}</p>}
+                        </>
+                    ) : (
+                        <>
+                            {/* For pickup point */}
+                            {deliveryLocation.name && <p>{deliveryLocation.name}</p>}
+                            {deliveryLocation.street && <p>{deliveryLocation.street}</p>}
+                            {deliveryLocation.city && <p>{deliveryLocation.city}</p>}
+                            {deliveryLocation.postcode && <p>{deliveryLocation.postcode}</p>}
+                        </>
+                    )}
+                </span>
+                <button onClick={() => setCheckoutProgress('shipping')}>Edit</button>
+            </div>
         </section>
     );
 };
@@ -207,32 +218,36 @@ const DeliveryForm = () => {
 
     return (
         <>
-            <div className={`${styles.card} ${styles.email}`}>
-                {checkoutProgress === 'email' ? (
+            {checkoutProgress === 'email' ? (
+                <div className={`${styles.card} ${styles.email}`}>
                     <EmailStep
                         userDetails={userDetails}
                         setCheckoutProgress={setCheckoutProgress}
                         handleUserDetailsChange={handleUserDetailsChange}
                     />
-                ) : (
+                </div>
+            ) : (
+                <div className={`${styles.card} ${styles.email}`}>
                     <EmailSummary
                         userDetails={userDetails}
                         setCheckoutProgress={setCheckoutProgress}
                     />
-                )}
-            </div>
+                </div>
+            )}
 
-            <div className={`${styles.card} ${styles.shipping}`}>
-                {checkoutProgress === 'shipping' ? (
+            {checkoutProgress === 'shipping' ? (
+                <div className={`${styles.card} ${styles.shipping}`}>
                     <ShippingStep
                         userDetails={userDetails}
                         handleUserDetailsChange={handleUserDetailsChange}
                         setCheckoutProgress={setCheckoutProgress}
                     />
-                ) : (
+                </div>
+            ) : (
+                <div className={`${styles.card} ${styles.shipping}`}>
                     <ShippingSummary setCheckoutProgress={setCheckoutProgress} />
-                )}
-            </div>
+                </div>
+            )}
         </>
     );
 };

@@ -1,150 +1,308 @@
+/* --- Layout & Containers --- */
+body {
+  background-color: lightgray;
+}
+
+.orderForm {
+  max-width: 100vw;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  margin-bottom: 2vh;
+}
+
+h3, p {
+  margin: 2vmin
+}
 
 .checkout {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    padding: 1vh 10vw;
-    justify-items: center;
-}
-
-.orderSummary {
-    background-color: white;
-    color: black;
-    max-height: 95vh;
-    overflow-y: scroll;
-    padding: 25px;
-    border-radius: 15px;
-    min-height: 70vh;
-}
-.orderSummaryTitle{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.itemTitle {
-    display: flex;
-    flex-wrap: wrap;  
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-    gap: 0.5rem;
-    word-break: break-word; 
-}
-
-.itemCard {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 2fr;
-    padding: 10px;
-}
-
-.imgContainer {
-    width: 100px;    
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8f8f8; 
-    border-radius: 8px; 
-    margin-right: 10px;
-    overflow: hidden;  
-}
-
-.imgContainer img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.pickUpContainer div {
-    background-color: white;
-    margin-bottom: 5px;
-    color: black;
-    width: 20vw;
-}
-
-.error {
-    height: 2rem;
-    color: red;
-    font-style: italic;
-}
-
-.addressDropdown {
-    background-color: white;
-    color: black;
-    height: fit-content;
-    max-height: 20vh;
-    width: 40vw;
-    overflow-y: scroll;
-    list-style: none;
-}
-
-
-.addressDropdown li:hover, .pickUpContainer div:hover {
-    background-color: lightgray;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 2vw 2vw;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f2f2f2
 }
 
 .card {
-    background-color: white;
-    color: black;
-    max-width: 75%;
-    border-radius: 20px;
-    padding: 25px 40px ;
-    margin-left: 5vw;
-    margin-bottom: 3vmin;
+  background-color: white;
+  color: black;
+  width: 95%;
+  border-radius: 16px;
+  padding: 1.5rem 12px;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  height: fit-content;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
 }
 
-.userEmail {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+h2{
+    letter-spacing: -.02em;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.1;
 }
 
-.checkoutForm {
-    display: flex;
-    flex-direction: column;
+
+.countrySelect {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  font-style: italic;
+  margin-bottom: 0.5rem;
 }
 
-.checkoutForm input {
-    background-color: white;
-    margin-bottom: 1vmin;
-    padding: 10px;
-    color: black;
-    border: none;
-    border-bottom: 3px solid black;
+.card input {
+  width: fit-content;
 }
 
-body {
-    background-color: lightgray;
+/* --- Order Summary --- */
+
+.orderSummaryToggle {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  color: black;
 }
 
-.nameIn {
-    display: flex;
+.orderSummary {
+  background-color: white;
+  color: black;
+  max-height: 95vh;
+  overflow-y: auto;
+  padding: 16px;
+  border-radius: 12px;
+  min-height: 60vh;
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+}
+
+.userEmail button, .billingSummary button, .shippingWrapper button {
+  font-size: 1em;
+  background-color: white;
+  color: black;
+}
+
+.orderSummaryTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- Item Cards --- */
+.itemCard {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  gap: 10px;
+}
+
+.itemTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.5rem;
+  word-break: break-word;
+}
+
+.imgContainer {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.imgContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- Icon & Animation --- */
+.iconTransition {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.expanded {
+  transform: rotate(180deg);
+}
+
+/* --- Address & Pickup --- */
+.addressDropdown {
+  background-color: white;
+  color: black;
+  max-height: 30vh;
+  width: 100%;
+  overflow-y: auto;
+  list-style: none;
+  border-radius: 8px;
+}
+
+.addressDropdown li:hover,
+.pickUpContainer div:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.pickUpContainer div {
+  background-color: white;
+  margin-bottom: 5px;
+  color: black;
+  width: 100%;
 }
 
 .pickupTitle {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .pickBase {
-    background-color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    margin-right: 10px;
-    display: inline-block;
-    box-sizing: border-box;
-    border: 1px solid black;
-    position: relative;
-    transition: border 0.05s;
+  background-color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid black;
+  position: relative;
+  transition: border 0.05s;
 }
+
 .activePick {
-    border: 6px solid #222;
+  border: 6px solid #222;
 }
 
 .activePick::after {
-    background: #222;
+  background: #222;
+}
+
+/* --- Forms --- */
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: 100%;
+}
+
+.checkoutForm input, .checkoutForm select {
+  background-color: white;
+  margin-bottom: 2vw;
+  padding: 10px;
+  width: 100%;
+  color: black;
+  border: none;
+  border-bottom: 2px solid black;
+  padding: 0px;
+}
+
+.error {
+  height: 1px;
+}
+
+.sr-only {
+  display: none;
+}
+
+.devOption {
+  margin: 2rem 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+}
+
+.devOption button {
+  background-color: #f2f2f2;
+  font-size: 0.8rem;
+  color: black;
+  width: 50%;
+  height: 10vh;
+}
+
+.devOption button:active {
+  border: 2px solid black;
+}
+
+.pickupSearchWrapper {
+  display: flex;
+  height: 8vh;
+  align-items: center;
+  gap: 3vw;
+}
+
+.pickupSearchWrapper button {
+  padding: 3vmin 6vmin;
+  color: black;
+  background-color: white;
+  border: 4px solid black;
+  border-radius: 20px;
+}
+
+.pickupSearchWrapper input {
+  margin: 0px;
+}
+
+.nameIn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+}
+
+.pickUpOption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+.pickUpOption p {
+  grid-column: 2;
+}
+
+/* --- Misc --- */
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.userEmail, .billingSummary, .shippingWrapper{
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 2fr auto;
+  font-size: 0.8rem;
+}
+
+.userEmail p, .billingSummary p {
+  opacity: 0.8;
+  font-size: 0.9rem;
+  letter-spacing: -0.02em;
+}
+
+.error {
+  height: 2rem;
+  color: red;
+  font-style: italic;
 }

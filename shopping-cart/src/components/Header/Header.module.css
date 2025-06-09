@@ -99,6 +99,7 @@ border: none;
 
 .dropdown h3 {
   font-size: 1em;
+  font-weight: 400;
   color: black;
   margin-bottom: 1rem;
 }

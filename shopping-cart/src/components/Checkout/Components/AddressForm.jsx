@@ -54,53 +54,58 @@ const AddressForm = ({countryCode, deliveryLocation, setDeliveryLocation}) => {
           value={typingAddress}
         />
 
-        <div className={styles.detailsDropdown}>
-          <input
-            type="text"
-            placeholder="House Number"
-            value={`${deliveryLocation.address?.house_number || ""}`}
-            onChange= {(e) => editInput(e, "house_number")}
-          />
+        {deliveryLocation.address?.postcode && (
+          <div className={styles.detailsDropdown}>
+            <input
+              type="text"
+              placeholder="House Number"
+              value={deliveryLocation.address?.house_number || ""}
+              onChange={(e) => editInput(e, "house_number")}
+            />
 
-          <input
-            type="text"
-            placeholder="Road name" 
-            value={`${deliveryLocation.address?.road || ""}`}
-            onChange={(e) => editInput(e, "road")}
-          />
+            <input
+              type="text"
+              placeholder="Road name"
+              value={deliveryLocation.address?.road || ""}
+              onChange={(e) => editInput(e, "road")}
+            />
 
-          <input
-            type="text"
-            placeholder="City / Town"
-            value={deliveryLocation.address?.city || deliveryLocation.address?.town || "" || deliveryLocation.address?.village || ""}
-            onChange={e => editInput(e, "city")
-            }
-          />
+            <input
+              type="text"
+              placeholder="City / Town"
+              value={
+                deliveryLocation.address?.city ||
+                deliveryLocation.address?.town ||
+                deliveryLocation.address?.village ||
+                ""
+              }
+              onChange={(e) => editInput(e, "city")}
+            />
 
-          <input
-            type="text"
-            placeholder="Post code"
-            value={deliveryLocation.address?.postcode || ""}
-            onChange={e => editInput(e, "postcode")}
-          />
-
-        </div>
+            <input
+              type="text"
+              placeholder="Post code"
+              value={deliveryLocation.address?.postcode || ""}
+              onChange={(e) => editInput(e, "postcode")}
+            />
+          </div>
+        )}
 
         <section className={styles.suggestionsSection}>
-        <div className={styles.addressDropdown}>
-          {addresses.length > 0 ? (
-            addresses.map((suggestion, index) => (
-              <li
-                onClick={() => setDeliveryLocation(suggestion)}
-                key={index}
-              >
-                {suggestion.label}
-              </li>
-            ))
-          ) : (
-            <li>No suggestions found</li>
-          )}
-        </div>
+          <div className={styles.addressDropdown}>
+            {addresses.length > 0 ? (
+              addresses.map((suggestion, index) => (
+                <li
+                  onClick={() => setDeliveryLocation(suggestion)}
+                  key={index}
+                >
+                  {suggestion.label}
+                </li>
+              ))
+            ) : (
+              <li>No suggestions found</li>
+            )}
+          </div>
         </section>
       </>
     )}

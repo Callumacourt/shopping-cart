@@ -3,6 +3,7 @@ import x from '../../assets/x.svg'
 import { useProducts } from '../../context/ProductContext'
 import styles from './Header.module.css'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const NavDropdown = () => {
     const [expand, setExpand] = useState(false)
@@ -14,10 +15,30 @@ const NavDropdown = () => {
                 <section className={styles.navDropdown}>
                 <button onClick={() => {setExpand(false)}}>{<img src={x} alt='Close button X'/>}</button>
                 <ul>
-                    <li onClick={setCategory(`men's clothing`)}>Mens</li>
-                    <li>Womens</li>
-                    <li>About Us</li>
-                    <li>Cart</li>
+                    <Link to = '/store'>
+                        <li onClick={() => {
+                            setCategory(`men's clothing`)
+                            setExpand(false)
+                            }}>Mens
+                            </li>
+                    </Link>
+                    <Link to= '/store'>
+                        <li onClick={() => {
+                            setCategory(`women's clothing`)
+                            setExpand(false)
+                        }}>Womens
+                        </li>
+                    </Link>
+                    <Link to= '/about'>
+                        <li onClick={() => {
+                            setExpand(false)
+                        }}>About Us</li>
+                    </Link>
+                    <Link to= '/cart'>
+                        <li onClick={() => {
+                            setExpand(false)
+                        }}>Cart</li>
+                    </Link>
                 </ul>
                 </section>
             )}
