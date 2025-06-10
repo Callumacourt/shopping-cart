@@ -82,7 +82,7 @@ const PaymentDetails = ({setPaymentError, setCardSummary, setCheckoutProgress}) 
     return (
          <>
             <h2>Please enter your payment details</h2>
-            <CardElement/>
+            <CardElement className={styles.paymentCard}/>
             <button type="button" onClick={handleReviewClick}>Review order</button>
         </>
     )

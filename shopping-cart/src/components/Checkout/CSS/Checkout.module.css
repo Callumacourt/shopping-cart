@@ -288,6 +288,15 @@ header {
   gap: 0.5rem;
 }
 
+.paymentCard {
+  margin-top: 2vh;
+  padding-bottom: 3vh;
+}
+
+.billingSummary {
+  margin-bottom: 3vh;
+}
+
 .userEmail, .billingSummary, .shippingWrapper{
   display: grid;
   align-items: center;

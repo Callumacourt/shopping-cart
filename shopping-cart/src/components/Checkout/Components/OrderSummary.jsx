@@ -53,7 +53,7 @@ const OrderSummary = () => {
 
                     <p>Subtotal: £{subtotal}</p>
                     <p>Estimated Shipping: {shipping === 0 ? 'Free' : '£' + shipping}</p>
-                    <p>Total: £{subtotal + shipping}</p>
+                    <p>Total: £{(parseFloat(subtotal) + shipping).toFixed(2)}</p>
                 </section>
             )}
         </div>
