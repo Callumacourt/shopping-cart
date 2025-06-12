@@ -29,6 +29,13 @@ const NavDropdown = () => {
                         }}>Womens
                         </li>
                     </Link>
+                    <Link to= '/store'>
+                        <li onClick={() => {
+                            setCategory(`jewelery`)
+                            setExpand(false)
+                        }}>Jewelery
+                        </li>
+                    </Link>
                     <Link to= '/about'>
                         <li onClick={() => {
                             setExpand(false)

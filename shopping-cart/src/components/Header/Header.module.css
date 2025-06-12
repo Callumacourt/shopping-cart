@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3vw 6vw;
+  padding: 1vh 6vw;
   top: 0px;
   position: sticky;
   box-sizing: border-box;
@@ -139,6 +139,10 @@ border: none;
   font-size: 1.5rem;
   letter-spacing: 0.05em;
   gap: 20px;
+}
+
+.navDropdown a {
+  color: black;
 }
 
 /* --- Search Modal --- */

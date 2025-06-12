@@ -31,6 +31,9 @@ const Footer = () => {
         <p>Cardiff, UK</p>
         <p>Mon - Fri: 9AM - 5PM</p>
       </section>
+      <section>
+      <small>© 2025 Logoipsum, all rights reserved</small>
+      </section>
     </div>
   );
 };

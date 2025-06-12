@@ -21,6 +21,7 @@ const Cart = () => {
       .toFixed(2)
   return (
     <>
+      <div className={styles.cartWrapper}>
       <h3>Your bag ({cartItems.length})</h3>
       <main className={styles.cart}>
       {cartItems.map((item, index) => (
@@ -86,6 +87,7 @@ const Cart = () => {
         )}
       </section>
       </main>
+    </div>
     </>
   );
 };

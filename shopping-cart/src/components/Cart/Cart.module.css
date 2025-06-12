@@ -2,6 +2,10 @@
     min-height: 80vh;
 }
 
+.cartWrapper {
+    padding-inline: 5vw;
+}
+
 .checkoutCard {
     display: flex;
     gap: 2vw;

@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import styles from './Hero.module.css';
 import Carousel from './Carousel';
+import { useProducts } from '../../context/ProductContext';
 
 const HomeHero = () => {
+  const {setCategory} = useProducts()
   return (
     <>
       <section>
@@ -19,7 +21,7 @@ const HomeHero = () => {
             </div>
             <div className={styles.buttons}>
               <Link to="/store">
-                <button>Shop now</button>
+                <button onClick={() => setCategory()}>Shop now</button>
               </Link>
               <Link to="/about">
                 <button>Learn more</button>

@@ -2,6 +2,12 @@ import styles from './Products.module.css';
 import { Link } from 'react-router-dom';
 
 const Card = ({ product }) => {
+  // Capitalise the first letter of each word in the category
+  const capitalisedCategory = product.category
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
   return (
     <>
       <div className={styles.card}>
@@ -17,7 +23,7 @@ const Card = ({ product }) => {
         <div className={styles.productData}>
           <span className={styles.productHeader}>
             <p className={styles.productTitle}>{product.title}</p>
-            <p><i>{product.category}</i></p>
+            <p><i>{capitalisedCategory}</i></p>
           </span>
           <span className={styles.priceContainer}>
             <p><b>£{product.price}</b></p>
