@@ -1,5 +1,5 @@
 import { Link} from 'react-router-dom';
-import styles from '../Header/header.module.css';
+import styles from './Search.module.css';
 
 export default function Dropdown({setMobileExpanded, searchTerm, matches }) {
 

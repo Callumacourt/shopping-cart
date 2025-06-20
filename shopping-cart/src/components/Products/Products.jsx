@@ -14,12 +14,18 @@ export default function Products() {
       ? productData.filter((product) => product.category === category)
       : productData;
 
-    {console.log(filteredProducts)}
+
+  const capitalisedCategory = category 
+  ? category
+  .split(' ')
+  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(' ')
+  : 'All Products';
 
   return (
     <>
       <span className={styles.categoryHeader}>
-        <h3>All Products</h3>
+        <h3>{capitalisedCategory}</h3>
       </span>
       <section className={styles.filterProducts}>
         <p>{filteredProducts.length} Results</p>

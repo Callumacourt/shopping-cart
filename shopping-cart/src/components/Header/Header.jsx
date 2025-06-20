@@ -1,5 +1,5 @@
 import Navbar from './Navbar';
-import SearchBar from './SearchBar';
+import SearchBar from '../Search/SearchBar';
 import NavDropdown from './NavDropdown';
 import cartIcn from '../../assets/shopping-cart.svg';
 import logo from '../../assets/logo.svg';
@@ -18,7 +18,7 @@ const MobileHeader = ({cartItems}) => {
   </Link>
   <Link to="/cart">
       <button className = {styles.header_icons}>
-        <img src={cartIcn} alt="Shopping Cart" />
+        <img className = {styles.cartIcn} src={cartIcn} alt="Shopping Cart" />
         <span>{cartItems.length}</span>
       </button>
   </Link>
@@ -45,7 +45,7 @@ const Header = () => {
           <div className={styles.header_icons}>
             <Link to="/cart">
               <button>
-                <img src={cartIcn} alt="Shopping Cart" />
+                <img className = {styles.cartIcn} src={cartIcn} alt="Shopping Cart" />
                 <span>{cartItems.length}</span>
               </button>
             </Link>

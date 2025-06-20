@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Dropdown from '../Search/Dropdown';
+import Dropdown from './Dropdown';
 import searchIcn from '../../assets/search.svg'
 import { useProducts } from '../../context/ProductContext';
-import styles from './header.module.css';
+import styles from './Search.module.css';
 
 const SearchBar = ({ mobile }) => {
   const [input, setInput] = useState('');
@@ -18,6 +18,7 @@ const SearchBar = ({ mobile }) => {
 
   const handleInputChange = (event) => {
     const value = event.target.value;
+
     setInput(value);
 
     if (value.length < 3) {
@@ -83,7 +84,7 @@ const SearchBar = ({ mobile }) => {
             type="text"
             value={input}
           />
-          {input.length > 0 && <Dropdown matches={matches} />}
+          {input.length > 0 && <Dropdown searchTerm = {input} matches={matches} />}
         </div>
       )}
     </>

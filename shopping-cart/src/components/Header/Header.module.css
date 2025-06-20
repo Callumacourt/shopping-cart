@@ -201,3 +201,32 @@ border: none;
 .searchWrapper:focus-within {
   outline: 2px solid #254453;
 }
+
+.cartIcn {
+  margin-right: 5px;
+}
+
+@media (min-width: 768px) {
+  .header_icons {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0.5rem;
+  }
+  .header_icons img {
+    height: 2.2rem;
+    width: 2.2rem;
+  }
+
+  .logo {
+    margin-right: 10vw;
+  }
+  
+  .header {
+    padding: 1.5vh 10vw;
+    gap: 2vw;
+  }
+
+  .navlinks {
+    gap: 3vw;
+  }
+}

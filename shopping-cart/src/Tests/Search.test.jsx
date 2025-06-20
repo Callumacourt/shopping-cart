@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import SearchBar from '../components/Header/SearchBar';
+import SearchBar from '../components/Search/SearchBar';
 import * as ProductContext from '../context/ProductContext';
 
 describe('Search bar', () => {
