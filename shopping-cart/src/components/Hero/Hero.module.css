@@ -54,19 +54,20 @@ section {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold;
-  font-size: clamp(1rem, 2vw, 2rem);
   max-width: 100%;
 }
 
 .textWrapper p {
   font-family: 'Montserrat', 'grand', Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 1.7vw, 2rem);
   letter-spacing: 0.02em;
 }
 
 .textWrapper h3 {
   font-size: 3rem;
   font-family: 'playfair';
+  font-weight: 800;
   opacity: 0.9;
 }
 
@@ -89,7 +90,6 @@ section {
   }
 }
 
-/* Mobile*/
 @media (max-width: 576px) {
   .container {
     width: 90%;

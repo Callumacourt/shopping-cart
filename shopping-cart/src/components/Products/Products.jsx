@@ -2,8 +2,18 @@ import { useProducts } from '../../context/ProductContext';
 import Card from './Card';
 import styles from './Products.module.css';
 import filterIcn from '../../assets/filter.svg';
+import { useEffect } from 'react';
 
 export default function Products() {
+
+  useEffect(() => {
+    const scroll = sessionStorage.getItem('storeScroll');
+    if (scroll) {
+      window.scrollTo(0, parseInt(scroll, 10));
+      sessionStorage.removeItem('storeScroll');
+    }
+  }, []);
+
   const { productData, error, loading, category } = useProducts();
 
   if (loading) return <div>Loading...</div>;

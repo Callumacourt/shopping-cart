@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import AddToCart from '../components/Products/AddToCart';
 import styles from '../components/Products/SingleProduct.module.css'
 import ProductStars from '../components/Products/ProductStars';
+import { Link } from 'react-router-dom';
+import backIcn from '../.../../assets/arrow-down.svg'
 
 export default function ProductPage() {
   const { productData, error, loading } = useProducts();
@@ -17,6 +19,10 @@ export default function ProductPage() {
 
   return (
     <>
+      <Link className = {styles.backNav} to="/store">
+      <img src={backIcn} alt="Back" />
+      Back
+      </Link>
       <main className={styles.container}>
         <div className={styles.imgContainer}>
           <img src={selectedProduct.image} alt={selectedProduct.title} />

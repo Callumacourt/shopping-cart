@@ -35,3 +35,11 @@
 .nextButton {
   right: 10px;
 }
+
+@media (min-width: 768px) {
+  .carouselImage {
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+}

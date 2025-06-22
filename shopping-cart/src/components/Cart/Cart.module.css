@@ -119,3 +119,41 @@ h3 {
     display: flex;
     justify-content: space-between;
 }
+
+@media (min-width: 768px) {
+    .cart {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10%;
+    }
+
+    .orderSummary {
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .orderSummary span {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        width: 40vw;
+    }
+
+    .cartWrapper {
+        padding: 5vh 8vw;
+    }
+
+    .cartEnd button {
+        width: 45vw;
+    }
+    .contentWrapper {
+    width: 100%;
+    }
+
+    .selectWrapper select {
+        width: 35px;
+    }
+
+    .contentWrapper p {
+        margin: 0px;
+    }
+}

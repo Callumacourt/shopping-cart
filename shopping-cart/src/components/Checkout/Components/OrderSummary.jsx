@@ -3,6 +3,7 @@ import { CartContext } from "../../../context/CartContext";
 import { Link } from "react-router-dom";
 import styles from '../CSS/Checkout.module.css';
 import expandIcn from '../../../assets/arrow-down.svg';
+import { useMediaQuery } from "../../../Helpers/useMediaQuery";
 
 const OrderSummary = () => {
     const { cartItems } = useContext(CartContext);
@@ -11,8 +12,13 @@ const OrderSummary = () => {
     // temp
     const shipping = 0;
 
+    const isDesktop = useMediaQuery("(min-width: 768px)");
+    const showExpanded = isDesktop || expanded
+
+
     return (
         <div className= {styles.orderSumCont}>
+            {!isDesktop && (
             <button
                 onClick={() => setExpanded((prev) => !prev)}
                 className={styles.orderSummaryToggle}
@@ -31,7 +37,8 @@ const OrderSummary = () => {
                     </span>
                 </div>
             </button>
-            {expanded && (
+            )}
+            {showExpanded && (
                 <section className={styles.orderSummary}>
                     <span className={styles.orderSummaryTitle}>
                         <h2>Order Summary</h2>

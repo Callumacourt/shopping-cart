@@ -15,6 +15,7 @@ const PickupPoint = () => {
     
     const [postcode, setPostcode] = useState('')
     const [activePick, setActivePick] = useState('')
+    const [hasSearched, setHasSearched] = useState(false)
     
     const handleInput = async () => {
         try {
@@ -22,6 +23,7 @@ const PickupPoint = () => {
         const pickups = await fetchNearbyLockers(postcode)
         setIsLoading(false)
         setPickupLocations(pickups)
+        setHasSearched(true)
         } catch {
             setPickupLocations('Empty')
         }
@@ -31,7 +33,7 @@ const PickupPoint = () => {
             <span className={styles.pickupSearchWrapper}>
                 <input 
                     type="text" 
-                    placeholder="post code" 
+                    placeholder="Postcode" 
                     value={postcode}
                     onChange={(e) => setPostcode(e.target.value)}
                     id="postcode" 
@@ -75,8 +77,9 @@ const PickupPoint = () => {
                                 </div>
                             ))
                         ) : (
+                            hasSearched && (
                             <p>No pickup locations found.</p>
-                        )}
+                        ))}
                     </>
                 )}
             </div>

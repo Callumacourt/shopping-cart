@@ -97,14 +97,25 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  transition: transform 0.2s ease;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: black;
 }
-button:focus,
+
+button:focus {
+  outline: none;
+}
+
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid #2684FF; 
 }
+
+  input:-webkit-autofill, select:-webkit-autofill {
+  color: black !important;
+  -webkit-text-fill-color: black !important; 
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

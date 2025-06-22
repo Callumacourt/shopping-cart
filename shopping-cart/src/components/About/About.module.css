@@ -3,12 +3,17 @@
     margin-bottom: 5vh;
 }
 
-.aboutHeader {
-    margin-top: 2vh;
+.story1 div h2 {
+    font-size: 3rem;
+    margin: 2vmin;
 }
 
-.aboutHeader h2 {
-    font-size: 3rem;
+.small {
+    grid-column: 2;
+}
+
+.aboutHeader {
+    margin-top: 2vh;
 }
 
 .story1 {
@@ -64,4 +69,31 @@
 
 .initiatives h4 {
     font-size: 1.5rem;
+}
+
+@media (min-width: 1068px) {
+    
+    .contentWrapper p {
+        font-size: 1.2rem;
+    }
+    
+    .graphicSection {
+        flex-direction: row;
+    }
+
+    .graphicSection img {
+        height: 5vh;
+        margin-bottom: 0;
+    }
+
+    .story1, .initiatives {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2vw;
+        align-items: center;
+    }
+
+    .initiatives img {
+        height: 75vh;
+    }
 }

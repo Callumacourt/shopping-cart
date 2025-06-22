@@ -70,6 +70,7 @@ const SearchBar = ({ mobile }) => {
                   setMobileExpanded={setMobileExpanded}
                   searchTerm={input}
                   matches={matches}
+                  setInput = {setInput}
                 />
               )}
             </section>
@@ -84,7 +85,13 @@ const SearchBar = ({ mobile }) => {
             type="text"
             value={input}
           />
-          {input.length > 0 && <Dropdown searchTerm = {input} matches={matches} />}
+          {input.length > 0 && (
+            <Dropdown
+              searchTerm={input}
+              matches={matches}
+              setInput={setInput}
+            />
+          )}
         </div>
       )}
     </>

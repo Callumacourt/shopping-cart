@@ -1,7 +1,7 @@
 import { Link} from 'react-router-dom';
 import styles from './Search.module.css';
 
-export default function Dropdown({setMobileExpanded, searchTerm, matches }) {
+export default function Dropdown({setMobileExpanded = false, searchTerm, matches, setInput }) {
 
   const sliceMatch = (searchTerm, match) => {
 
@@ -17,6 +17,11 @@ export default function Dropdown({setMobileExpanded, searchTerm, matches }) {
       match.slice(index + searchTerm.length)
     ]
   }
+
+  const handleSearchSelect = () => {
+    if (setMobileExpanded) setMobileExpanded(false);
+    if (setInput) setInput('');
+  }
   return (
     <div className={styles.dropdown}>
       {searchTerm.length >=3 && 
@@ -25,7 +30,7 @@ export default function Dropdown({setMobileExpanded, searchTerm, matches }) {
           return (
             <div key={match.id}>
               <Link to={`/product/${match.id}`}>
-                <span onClick={() => setMobileExpanded(false)}>
+                <span onClick={handleSearchSelect}>
                   <h3>
                     {before}
                     <strong>{matchPart}</strong>

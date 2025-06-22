@@ -1,9 +1,11 @@
 import PropTypes, { arrayOf, object } from 'prop-types';
+import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import styles from './Cart.module.css'
 import trashIcn from '../../assets/trash-2.svg'
 import heartIcn from '../../assets/heart.svg'
+import redHeart from '../../assets/redHeart.svg'
 
 const cartItemShape = PropTypes.shape({
   name: PropTypes.string.isRequired,
@@ -15,15 +17,34 @@ const cartItemShape = PropTypes.shape({
 
 const Cart = () => {
   const { cartItems, removeFromCart, setQty } = useCart();
+
   const cartTotal = 
     cartItems.
       reduce((total, item) => total + item.price * item.qty, 0)
       .toFixed(2)
+
+  const [likedItems, setLikedItems] = useState(() => {
+    const initialLikes = {};
+    cartItems.forEach((item) => {
+      initialLikes[item.id] = false;
+    }
+  );
+  return initialLikes;
+});
+
+const toggleLike = (id) => {
+  setLikedItems(prev => ({
+    ...prev, 
+    [id] : !prev[id]
+  }))
+}
+
   return (
     <>
       <div className={styles.cartWrapper}>
       <h3>Your bag ({cartItems.length})</h3>
       <main className={styles.cart}>
+        <div className={styles.cartItems}>
       {cartItems.map((item, index) => (
         <article className = {styles.checkoutCard} key={index}>
           <div className={styles.imgWrapper}>
@@ -54,22 +75,39 @@ const Cart = () => {
             </div>
             <span className = {styles.editSection}>
               <p>Save for later</p>
-              <button><img src={heartIcn}/></button>
+              <button>
+                <img 
+                src={likedItems[item.id] ? redHeart : heartIcn}
+                onClick={() => toggleLike(item.id)}
+                alt='Heart icon'
+                />
+              </button>
               <button onClick={() => removeFromCart(index)}><img src={trashIcn}/></button>
             </span>
             </div>
         </article>
       ))}
+      </div>
       <section className={styles.cartEnd} >
         {cartItems.length > 0 ? (
         <>
         <section className={styles.orderSummary}>
           <h2>Order Summary</h2>
           <span>
-            <p>Subtotal ({cartItems.length})</p>
-            <p>
-              <b>£{cartTotal}</b>
-            </p>
+          <p>Subtotal ({cartItems.length})</p>
+          <p>Qty</p>
+          <p>Price</p>
+          </span>
+          <span>
+            <div className={styles.items}>
+            {cartItems.map((item) => (
+              <span>
+                <p>{item.title}</p>
+                <p>{item.qty}</p>
+                <p>£{item.price}</p>
+              </span>
+          ))}
+          </div>
           </span>
           <p><b>Estimated Shipping: FREE</b></p>
           <hr />

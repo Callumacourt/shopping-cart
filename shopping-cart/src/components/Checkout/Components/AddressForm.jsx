@@ -15,6 +15,7 @@ const AddressForm = ({countryCode, deliveryLocation, setDeliveryLocation}) => {
   } = useContext(DeliveryContext)
 
   const [addresses, setAddresses] = useState([])
+  const [hasSearched, setHasSearched] = useState(false)
   const debounceTimer = useRef()
 
   const handleInput = (e) => {
@@ -25,6 +26,7 @@ const AddressForm = ({countryCode, deliveryLocation, setDeliveryLocation}) => {
       debounceTimer.current = setTimeout(async () => {
           setIsLoading(true)
           const suggestions = await fetchAddress(value, countryCode);
+          setHasSearched(true)
           setAddresses(suggestions)
           setIsLoading(false)
       }, 500)
@@ -49,7 +51,7 @@ const AddressForm = ({countryCode, deliveryLocation, setDeliveryLocation}) => {
 
         <input
           type="text"
-          placeholder="address"
+          placeholder="Start typing your address"
           onChange={handleInput}
           value={typingAddress}
         />
@@ -103,7 +105,9 @@ const AddressForm = ({countryCode, deliveryLocation, setDeliveryLocation}) => {
                 </li>
               ))
             ) : (
+              hasSearched && (
               <li>No suggestions found</li>
+              )
             )}
           </div>
         </section>

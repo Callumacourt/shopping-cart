@@ -10,11 +10,10 @@ const About = () => {
   return (
     <>
     <div className={styles.contentWrapper}>
-      <header className = {styles.aboutHeader}>
-        <h2>Our story</h2>
-      </header>
       <main>
         <section className = {styles.story1}>
+          <div>
+        <h2>Our story</h2>
         <p classname = {styles.paragraph}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
           Duis vitae dolor libero. Proin eu ultrices mauris. Maecenas 
@@ -28,11 +27,12 @@ const About = () => {
           massa est, sed condimentum tortor ullamcorper nec. Nunc sagittis 
           vitae lorem a pellentesque.
         </p>
+        </div>
         <div className={styles.imgContainer}>
           <img className = {styles.img} src={about1} alt="" />
         </div>
+        <small className = {styles.small}>Tempus leo eu aenean</small>
         </section>
-        <small>Tempus leo eu aenean</small>
         <section className = {styles.story2}>
           <h3 className = {styles.header3}>Lorem ipsum dolor</h3>
           <p className = {styles.paragraph}>
@@ -54,8 +54,8 @@ const About = () => {
             <img src={globeImg} alt="a globe image" />
             <p>Shipping worldwide, but not really</p>
         </section>
+        <h4>Initiatives</h4>
         <section className = {styles.initiatives}>
-          <h4>Initiatives</h4>
           <div>
             <img src={initiative1} alt="" />
             <h3>Climate action</h3>
