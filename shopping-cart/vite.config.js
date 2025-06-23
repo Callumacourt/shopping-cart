@@ -4,7 +4,6 @@ import prettierPlugin from 'eslint-plugin-prettier';
 
 const { environments } = prettierPlugin;
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   test: {
@@ -14,6 +13,6 @@ export default defineConfig({
   },
    server: {
     host: '0.0.0.0',
-    port: 5173, // or any other port you want
+    port: 5173, 
   }
 });
