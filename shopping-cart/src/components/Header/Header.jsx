@@ -3,7 +3,7 @@ import SearchBar from '../Search/SearchBar';
 import NavDropdown from './NavDropdown';
 import cartIcn from '../../assets/shopping-cart.svg';
 import logo from '../../assets/logo.svg';
-import styles from './header.module.css';
+import styles from './Header.module.css';
 import { useCart } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
