@@ -48,21 +48,27 @@ const SearchBar = ({ mobile }) => {
             onClick={() => setMobileExpanded(true)}
           />
           {mobileExpanded && (
-            <section className={styles.searchModal}>
+            <section className={styles.searchModal} aria-modal="true" role="dialog">
               <button onClick={() => setMobileExpanded(false)}>Cancel</button>
-              <div className={styles.searchWrapper}>
+              <div className={styles.searchWrapper} role="search">
                 <img
                   className={styles.header_icons}
                   src={searchIcn}
                   alt="Search"
                 />
                 <input
+                  id="search-products"
+                  aria-label="Search products"
+                  aria-autocomplete="list"
+                  aria-controls="search-dropdown"
                   type="text"
                   onInput={handleInputChange}
                   className={styles.searchBar}
                   value={input}
                   placeholder="Search products"
                   autoFocus
+                  role="combobox"
+                  aria-expanded={input.length > 0}
                 />
               </div>
               {input.length > 0 && (
@@ -71,25 +77,35 @@ const SearchBar = ({ mobile }) => {
                   searchTerm={input}
                   matches={matches}
                   setInput = {setInput}
+                  id="search-dropdown"
+                  role="listbox"
                 />
               )}
             </section>
           )}
         </>
       ) : (
-        <div className={styles.searchBarContainer}>
+        <div className={styles.searchBarContainer} role="search">
           <input
+            id="search-products"
+            aria-label="Search products"
+            aria-autocomplete="list"
+            aria-controls="search-dropdown"
             placeholder="Search products"
             onInput={handleInputChange}
             className={styles.searchBar}
             type="text"
             value={input}
+            role="combobox"
+            aria-expanded={input.length > 0}
           />
           {input.length > 0 && (
             <Dropdown
               searchTerm={input}
               matches={matches}
               setInput={setInput}
+              id="search-dropdown"
+              role="listbox"
             />
           )}
         </div>

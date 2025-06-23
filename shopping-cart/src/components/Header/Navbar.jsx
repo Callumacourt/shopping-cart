@@ -4,6 +4,7 @@ import styles from './header.module.css';
 const Navbar = () => {
   return (
     <>
+    <nav aria-label='Main navigation'>
       <div className={styles.linksContainer}>
         <ul className={styles.navlinks}>
           <li>
@@ -17,6 +18,7 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      </nav>
     </>
   );
 };

@@ -192,6 +192,11 @@
   .productContainer {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+    padding: 2vh 4vw 8vh 4vw;
+  }
+
+  .filterProducts {
+    padding-inline: 10rem;
   }
   
   .card {

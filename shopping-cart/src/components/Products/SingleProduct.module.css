@@ -15,7 +15,8 @@ body, .content{
   display: flex;
   color: black;
   align-content: center;
-  padding: 10px;
+  padding-top: 1.5rem;
+  padding-left: 2rem;
   gap: 5px;
 }
 

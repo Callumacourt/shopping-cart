@@ -208,7 +208,7 @@ h2{
   width: 100%;
 }
 
-.checkoutForm input, .checkoutForm select {
+.checkoutForm input, .checkoutForm select, .addressForm input {
   background-color: white;
   margin-bottom: 2vw;
   padding: 10px;
@@ -395,5 +395,15 @@ header {
 
   .error {
     height: 30px
-  };
+  }
+
+  .billingAddrSection span {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh;
+  }
+
+  .billingAddrSection input {
+    background-color: white;
+  }
 }

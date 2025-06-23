@@ -13,6 +13,10 @@
   width: 100%;
 }
 
+.header a {
+  color: white;
+}
+
 .logo {
   fill: white;
   height: 2.2rem;

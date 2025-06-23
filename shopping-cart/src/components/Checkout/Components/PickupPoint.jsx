@@ -31,21 +31,28 @@ const PickupPoint = () => {
     return (
         <>
             <span className={styles.pickupSearchWrapper}>
+                <label htmlFor="pickup-postcode" className={styles['sr-only']}>Enter your postcode</label>
                 <input 
+                    id="pickup-postcode"
                     type="text" 
                     placeholder="Postcode" 
                     value={postcode}
                     onChange={(e) => setPostcode(e.target.value)}
-                    id="postcode" 
                 />
                 <button
                     type="button"
                     onClick={handleInput}
+                    aria-label="Search for pickup locations"
                 >
                     Search
                 </button>
             </span>
-            <div className={styles.pickUpContainer}>
+            <div
+                className={styles.pickUpContainer}
+                role="listbox"
+                aria-label="Pickup locations"
+                aria-live="polite"
+            >
                 {loading ? (
                     <Loader />
                 ) : (
@@ -61,8 +68,9 @@ const PickupPoint = () => {
                                         setActivePick(pickup.id)
                                     }}
                                     tabIndex={0}
-                                    role="button"
-                                    aria-pressed={activePick === pickup.id}
+                                    role="option"
+                                    aria-selected={activePick === pickup.id}
+                                    aria-label={`Pickup location: ${pickup.name}, ${pickup.street}, ${pickup.city}, ${pickup.postcode}`}
                                     style={{ cursor: 'pointer' }}
                                 >
                                     <span

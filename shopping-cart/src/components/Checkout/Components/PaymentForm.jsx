@@ -16,7 +16,7 @@ const BillingAddressSection = ({ paymentProgress, setPaymentProgress }) => {
     const [activePick, setActivePick] = useState('same');
 
     return (
-        <>
+        <section className={styles.billingAddrSection }>
             <h3>Billing Address</h3>
             <span
                 onClick={() => {
@@ -45,7 +45,7 @@ const BillingAddressSection = ({ paymentProgress, setPaymentProgress }) => {
                     }
                     setPaymentProgress('pay')}}>Continue to payment</button>
             )}
-        </>
+        </section>
     );
 };
 
@@ -145,7 +145,6 @@ const PaymentForm = ({ checkoutProgress, setCheckoutProgress }) => {
                     {paymentProgress === 'billingAdd' && (
                         <>
                             <h3>Enter a different billing address</h3>
-                            {/* AddressForm should NOT render a .card */}
                             <AddressForm 
                                 countryCode={'+44'} 
                                 deliveryLocation={billingAddress} 

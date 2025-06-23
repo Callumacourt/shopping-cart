@@ -49,6 +49,11 @@
   align-items: center;
 }
 
+section a {
+  display: block;
+  color: white;
+}
+
 @media (min-width: 768px) {
   .mailingWrapper {
     width: 50%;

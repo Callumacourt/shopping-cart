@@ -11,11 +11,13 @@ const Card = ({ product }) => {
   return (
     <>
       <div className={styles.card}>
-        <Link to={`/product/${product.id}`}
-        onClick={() => {
-          sessionStorage.setItem('storeScroll', window.scrollY)
-          window.scrollTo(0, 0)
-        }}
+        <Link
+          to={`/product/${product.id}`}
+          aria-label={`View details for ${product.title}`}
+          onClick={() => {
+            sessionStorage.setItem('storeScroll', window.scrollY)
+            window.scrollTo(0, 0)
+          }}
         >
           <div className={styles.imgWrapper}>
             <img

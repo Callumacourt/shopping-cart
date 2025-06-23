@@ -16,10 +16,11 @@ const MobileHeader = ({cartItems}) => {
   <Link to="/">
     <img className={styles.logo} src={logo} alt="A dummy logo" />
   </Link>
-  <Link to="/cart">
+  <Link to="/cart" aria-label={`View shopping cart with ${cartItems.length} items`}>
       <button className = {styles.header_icons}>
-        <img className = {styles.cartIcn} src={cartIcn} alt="Shopping Cart" />
+        <img className = {styles.cartIcn} src={cartIcn} alt="Shopping Cart Icon" />
         <span>{cartItems.length}</span>
+        <span className = 'sr-only'>items in cart</span>
       </button>
   </Link>
   </>
@@ -43,10 +44,11 @@ const Header = () => {
           <SearchBar mobile={false} />
           <Navbar />
           <div className={styles.header_icons}>
-            <Link to="/cart">
+            <Link to="/cart" aria-label= {`View shopping cart with ${cartItems.length} items`}>
               <button>
-                <img className = {styles.cartIcn} src={cartIcn} alt="Shopping Cart" />
+                <img className = {styles.cartIcn} src={cartIcn} alt="" aria-hidden = "true" />
                 <span>{cartItems.length}</span>
+                <span className = 'sr-only'>items in cart</span>
               </button>
             </Link>
           </div>

@@ -11,7 +11,7 @@ const Checkout = () => {
     const {checkoutProgress, setCheckoutProgress} = useContext(DeliveryContext)
    
     return (
-        <div className = {styles.checkoutWrapper}>
+        <div className={styles.checkoutWrapper} role="main">
                 <OrderSummary/>
                 <main className={styles.checkout}>
                 <section className="orderForm">

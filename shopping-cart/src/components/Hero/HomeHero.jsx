@@ -21,10 +21,10 @@ const HomeHero = () => {
             </div>
             <div className={styles.buttons}>
               <Link to="/store">
-                <button onClick={() => setCategory()}>Shop now</button>
+                <button onClick={() => setCategory()} aria-label="Shop now">Shop now</button>
               </Link>
               <Link to="/about">
-                <button>Learn more</button>
+                <button aria-label="Learn more about us">Learn more</button>
               </Link>
             </div>
           </div>

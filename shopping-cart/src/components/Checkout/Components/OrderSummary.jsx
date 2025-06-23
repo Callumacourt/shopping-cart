@@ -17,12 +17,13 @@ const OrderSummary = () => {
 
 
     return (
-        <div className= {styles.orderSumCont}>
+        <div className={styles.orderSumCont}>
             {!isDesktop && (
             <button
                 onClick={() => setExpanded((prev) => !prev)}
                 className={styles.orderSummaryToggle}
                 type="button"
+                aria-label={expanded ? "Collapse order summary" : "Expand order summary"}
             >
                 <span>Order Summary</span>
                 <div className={styles.wrapper}>
@@ -39,7 +40,11 @@ const OrderSummary = () => {
             </button>
             )}
             {showExpanded && (
-                <section className={styles.orderSummary}>
+                <section
+                  className={styles.orderSummary}
+                  aria-label="Order summary"
+                  aria-live="polite"
+                >
                     <span className={styles.orderSummaryTitle}>
                         <h2>Order Summary</h2>
                         <Link to='/cart'>Edit</Link>

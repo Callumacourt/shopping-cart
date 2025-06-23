@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { default as hero1 } from '../../assets/hero1.jpg';
 import { default as hero2 } from '../../assets/hero2.jpg';
 import { default as hero3 } from '../../assets/hero3.jpg';
@@ -23,12 +23,8 @@ export default function Carousel() {
     );
   };
 
-  const pickSlide = (index) => {
-    setImgIndex(() => index);
-  };
-
   return (
-    <div className={styles.carousel}>
+    <div className={styles.carousel} role='region' aria-label='Product image carousel'>
       <button
         className={styles.prevButton}
         onClick={prevSlide}

@@ -38,8 +38,11 @@ export default function Products() {
         <h3>{capitalisedCategory}</h3>
       </span>
       <section className={styles.filterProducts}>
-        <p>{filteredProducts.length} Results</p>
-        <button>Filter<img src={filterIcn} /></button>
+        <p aria-live="polite">{filteredProducts.length} Results</p>
+        <button aria-label="Filter products">
+          Filter
+          <img src={filterIcn} alt="" aria-hidden="true" />
+        </button>
       </section>
       <div className={styles.productContainer}>
         {filteredProducts.map((product) => (

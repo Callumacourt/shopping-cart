@@ -7,47 +7,83 @@ import { Link } from 'react-router-dom'
 
 const NavDropdown = () => {
     const [expand, setExpand] = useState(false)
-    const {setCategory} = useProducts()
+    const { setCategory } = useProducts()
     return (
         <>
-            <img src={menu} className = {styles.header_icons} alt='A menu dropdown icons' onClick={() => {expand ? setExpand(false) : setExpand(true)}} />
+            <img
+                src={menu}
+                className={styles.header_icons}
+                alt='A menu dropdown icon'
+                onClick={() => setExpand(!expand)}
+            />
             {expand && (
-                <section className={styles.navDropdown}>
-                <button onClick={() => {setExpand(false)}}>{<img src={x} alt='Close button X'/>}</button>
-                <ul>
-                    <Link to = '/store'>
-                        <li onClick={() => {
-                            setCategory(`men's clothing`)
-                            setExpand(false)
-                            }}>Mens
-                            </li>
-                    </Link>
-                    <Link to= '/store'>
-                        <li onClick={() => {
-                            setCategory(`women's clothing`)
-                            setExpand(false)
-                        }}>Womens
+                <nav className={styles.navDropdown} aria-label='Main Navigation'>
+                    <button
+                        onClick={() => setExpand(false)}
+                        aria-label="Close navigation menu"
+                    >
+                        <img src={x} alt="" aria-hidden="true" />
+                    </button>
+                    <ul>
+                        <li>
+                            <Link
+                                aria-label="Mens clothing"
+                                to="/store"
+                                onClick={() => {
+                                    setCategory(`men's clothing`)
+                                    setExpand(false)
+                                }}
+                                aria-current={window.location.pathname === '/store' ? "page" : undefined}
+                            >
+                                Mens
+                            </Link>
                         </li>
-                    </Link>
-                    <Link to= '/store'>
-                        <li onClick={() => {
-                            setCategory(`jewelery`)
-                            setExpand(false)
-                        }}>Jewelery
+                        <li>
+                            <Link
+                                aria-label="Womens clothing"
+                                to="/store"
+                                onClick={() => {
+                                    setCategory(`women's clothing`)
+                                    setExpand(false)
+                                }}
+                                aria-current={window.location.pathname === '/store' ? "page" : undefined}
+                            >
+                                Womens
+                            </Link>
                         </li>
-                    </Link>
-                    <Link to= '/about'>
-                        <li onClick={() => {
-                            setExpand(false)
-                        }}>About Us</li>
-                    </Link>
-                    <Link to= '/cart'>
-                        <li onClick={() => {
-                            setExpand(false)
-                        }}>Cart</li>
-                    </Link>
-                </ul>
-                </section>
+                        <li>
+                            <Link
+                                aria-label="Jewelery"
+                                to="/store"
+                                onClick={() => {
+                                    setCategory(`jewelery`)
+                                    setExpand(false)
+                                }}
+                                aria-current={window.location.pathname === '/store' ? "page" : undefined}
+                            >
+                                Jewelery
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/about"
+                                onClick={() => setExpand(false)}
+                                aria-current={window.location.pathname === '/about' ? "page" : undefined}
+                            >
+                                About Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/cart"
+                                onClick={() => setExpand(false)}
+                                aria-current={window.location.pathname === '/cart' ? "page" : undefined}
+                            >
+                                Cart
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
             )}
         </>
     )

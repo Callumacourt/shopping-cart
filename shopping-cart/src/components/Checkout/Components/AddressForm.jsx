@@ -48,68 +48,95 @@ const AddressForm = ({countryCode, deliveryLocation, setDeliveryLocation}) => {
       <Loader />
     ) : (
       <>
+        <section className={styles.addressForm}>
+          <label htmlFor="address-search" className={styles['sr-only']}>Search for your address</label>
+          <input
+            id="address-search"
+            type="text"
+            placeholder="Start typing your address"
+            onChange={handleInput}
+            value={typingAddress}
+            aria-autocomplete="list"
+            aria-controls="address-suggestions"
+            aria-label="Search for your address"
+          />
 
-        <input
-          type="text"
-          placeholder="Start typing your address"
-          onChange={handleInput}
-          value={typingAddress}
-        />
+          {deliveryLocation.address?.postcode && (
+            <div className={styles.detailsDropdown}>
+              <label htmlFor="house-number" className={styles['sr-only']}>House Number</label>
+              <input
+                id="house-number"
+                type="text"
+                placeholder="House Number"
+                value={deliveryLocation.address?.house_number || ""}
+                onChange={(e) => editInput(e, "house_number")}
+                aria-label="House Number"
+              />
 
-        {deliveryLocation.address?.postcode && (
-          <div className={styles.detailsDropdown}>
-            <input
-              type="text"
-              placeholder="House Number"
-              value={deliveryLocation.address?.house_number || ""}
-              onChange={(e) => editInput(e, "house_number")}
-            />
+              <label htmlFor="road-name" className={styles['sr-only']}>Road name</label>
+              <input
+                id="road-name"
+                type="text"
+                placeholder="Road name"
+                value={deliveryLocation.address?.road || ""}
+                onChange={(e) => editInput(e, "road")}
+                aria-label="Road name"
+              />
 
-            <input
-              type="text"
-              placeholder="Road name"
-              value={deliveryLocation.address?.road || ""}
-              onChange={(e) => editInput(e, "road")}
-            />
+              <label htmlFor="city-town" className={styles['sr-only']}>City or Town</label>
+              <input
+                id="city-town"
+                type="text"
+                placeholder="City / Town"
+                value={
+                  deliveryLocation.address?.city ||
+                  deliveryLocation.address?.town ||
+                  deliveryLocation.address?.village ||
+                  ""
+                }
+                onChange={(e) => editInput(e, "city")}
+                aria-label="City or Town"
+              />
 
-            <input
-              type="text"
-              placeholder="City / Town"
-              value={
-                deliveryLocation.address?.city ||
-                deliveryLocation.address?.town ||
-                deliveryLocation.address?.village ||
-                ""
-              }
-              onChange={(e) => editInput(e, "city")}
-            />
+              <label htmlFor="postcode" className={styles['sr-only']}>Post code</label>
+              <input
+                id="postcode"
+                type="text"
+                placeholder="Post code"
+                value={deliveryLocation.address?.postcode || ""}
+                onChange={(e) => editInput(e, "postcode")}
+                aria-label="Post code"
+              />
+            </div>
+          )}
 
-            <input
-              type="text"
-              placeholder="Post code"
-              value={deliveryLocation.address?.postcode || ""}
-              onChange={(e) => editInput(e, "postcode")}
-            />
-          </div>
-        )}
-
-        <section className={styles.suggestionsSection}>
-          <div className={styles.addressDropdown}>
-            {addresses.length > 0 ? (
-              addresses.map((suggestion, index) => (
-                <li
-                  onClick={() => setDeliveryLocation(suggestion)}
-                  key={index}
-                >
-                  {suggestion.label}
-                </li>
-              ))
-            ) : (
-              hasSearched && (
-              <li>No suggestions found</li>
-              )
-            )}
-          </div>
+          <section className={styles.suggestionsSection}>
+            <div
+              className={styles.addressDropdown}
+              id="address-suggestions"
+              role="listbox"
+              aria-label="Address suggestions"
+              aria-live="polite"
+            >
+              {addresses.length > 0 ? (
+                addresses.map((suggestion, index) => (
+                  <li
+                    onClick={() => setDeliveryLocation(suggestion)}
+                    key={index}
+                    role="option"
+                    aria-selected="false"
+                    tabIndex={0}
+                  >
+                    {suggestion.label}
+                  </li>
+                ))
+              ) : (
+                hasSearched && (
+                  <li>No suggestions found</li>
+                )
+              )}
+            </div>
+          </section>
         </section>
       </>
     )}

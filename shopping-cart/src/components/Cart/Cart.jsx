@@ -75,14 +75,18 @@ const toggleLike = (id) => {
             </div>
             <span className = {styles.editSection}>
               <p>Save for later</p>
-              <button>
+              <button aria-label={likedItems[item.id] ? `Unlike ${item.title}` : `Like ${item.title}`}>
                 <img 
-                src={likedItems[item.id] ? redHeart : heartIcn}
-                onClick={() => toggleLike(item.id)}
-                alt='Heart icon'
+                  src={likedItems[item.id] ? redHeart : heartIcn}
+                  onClick={() => toggleLike(item.id)}
+                  alt='Heart icon'
                 />
               </button>
-              <button onClick={() => removeFromCart(index)}><img src={trashIcn}/></button>
+              <button 
+              onClick={() => removeFromCart(index)} 
+              aria-label={`Remove ${item.title} from cart`}>
+                <img src={trashIcn}/>
+              </button>
             </span>
             </div>
         </article>
@@ -114,7 +118,7 @@ const toggleLike = (id) => {
           <p><b>Estimated Total £{cartTotal}</b></p>
         </section>
           <Link to="/checkout">
-          <button>Checkout</button>
+          <button aria-label="Proceed to checkout">Checkout</button>
           </Link>
         </>
         ) : (
