@@ -144,4 +144,12 @@ const AddressForm = ({countryCode, deliveryLocation, setDeliveryLocation}) => {
 );
 }
 
+AddressForm.propTypes = {
+  countryCode: PropTypes.string.isRequired,
+  deliveryLocation: PropTypes.shape({
+    address: PropTypes.object,
+  }).isRequired,
+  setDeliveryLocation: PropTypes.func.isRequired,
+};
+
 export default AddressForm;
