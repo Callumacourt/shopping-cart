@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import styles from './Cart.module.css'
 import trashIcn from '../../assets/trash-2.svg'
 import heartIcn from '../../assets/heart.svg'
-import redHeart from '../../assets/redHeart.svg'
+import redHeart from '../../assets/redheart.svg'
 
 const cartItemShape = PropTypes.shape({
   name: PropTypes.string.isRequired,
