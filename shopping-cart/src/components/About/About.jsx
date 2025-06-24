@@ -1,4 +1,4 @@
-import about1 from '../../assets/About1.jpg'
+import about1 from '../../assets/about1.jpg'
 import awardImg from '../../assets/award.svg'
 import globeImg from '../../assets/globe.svg'
 import bagImg from '../../assets/shopping-bag.svg'
